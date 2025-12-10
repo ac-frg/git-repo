@@ -608,6 +608,7 @@ later is required to fix a server side protocol bug.
             action="store_false",
             help="do not run garbage collection on any projects (default)",
         )
+
         if show_smart:
             p.add_option(
                 "-s",

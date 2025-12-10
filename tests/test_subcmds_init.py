@@ -44,3 +44,5 @@ class InitCommand(unittest.TestCase):
             opts, args = self.cmd.OptionParser.parse_args(argv)
             with self.assertRaises(SystemExit):
                 self.cmd.ValidateOptions(opts, args)
+
+
