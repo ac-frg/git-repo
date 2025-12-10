@@ -1475,6 +1475,7 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
                 dest_branch = node.getAttribute("dest-branch")
                 upstream = node.getAttribute("upstream")
                 base_revision = node.getAttribute("base-rev")
+                sparse_checkout = node.getAttribute("sparse-checkout")
 
                 named_projects = self._projects[name]
                 if dest_path and not path and len(named_projects) > 1:
@@ -1503,6 +1504,10 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
                         p.dest_branch = dest_branch
                     if upstream:
                         p.upstream = upstream
+                    if sparse_checkout:
+                        p.sparse_checkout = XmlBool(
+                            node, "sparse-checkout", False
+                        )
 
                     if dest_path:
                         del self._paths[p.relpath]
@@ -1523,6 +1528,8 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
                             self._ParseLinkFile(p, n)
                         elif n.nodeName == "annotation":
                             self._ParseAnnotation(p, n)
+                        elif n.nodeName == "sparse-path":
+                            self._ParseSparsePath(p, n)
 
             if node.nodeName == "repo-hooks":
                 # Only one project can be the hooks project
@@ -1920,6 +1927,8 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
                 % (self.manifestFile, clone_depth)
             )
 
+        sparse_checkout = XmlBool(node, "sparse-checkout", False)
+
         dest_branch = (
             node.getAttribute("dest-branch") or self._default.destBranchExpr
         )
@@ -1970,6 +1979,7 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
             parent=parent,
             dest_branch=dest_branch,
             use_git_worktrees=use_git_worktrees,
+            sparse_checkout=sparse_checkout,
             **extra_proj_attrs,
         )
 
@@ -1980,6 +1990,8 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
                 self._ParseLinkFile(project, n)
             elif n.nodeName == "annotation":
                 self._ParseAnnotation(project, n)
+            elif n.nodeName == "sparse-path":
+                self._ParseSparsePath(project, n)
             elif n.nodeName == "project":
                 project.subprojects.append(
                     self._ParseProject(n, parent=project)
@@ -2247,6 +2259,10 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
                 'optional "keep" attribute must be ' '"true" or "false"'
             )
         element.AddAnnotation(name, value, keep)
+
+    def _ParseSparsePath(self, project, node):
+        path = self._reqatt(node, "path")
+        project.sparse_paths.append(path)
 
     def _get_remote(self, node):
         name = node.getAttribute("remote")
