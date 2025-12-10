@@ -84,6 +84,8 @@ following DTD:
   <!ATTLIST project upstream    CDATA #IMPLIED>
   <!ATTLIST project clone-depth CDATA #IMPLIED>
   <!ATTLIST project force-path  CDATA #IMPLIED>
+  <!ATTLIST project sparse-checkout CDATA #IMPLIED>
+  <!ATTLIST project sparse-paths    CDATA #IMPLIED>
 
   <!ELEMENT annotation EMPTY>
   <!ATTLIST annotation name  CDATA #REQUIRED>
@@ -386,6 +388,11 @@ rather than the `name` attribute.  This attribute only applies to the
 local mirrors syncing, it will be ignored when syncing the projects in a
 client working directory.
 
+Attribute `sparse-checkout`: Set to true to enable Git sparse-checkout for
+this project. When enabled, only the paths specified via `sparse-path` child
+elements will be checked out in the working directory. Requires Git 2.25.0
+or later.
+
 ### Element extend-project
 
 Modify the attributes of the named project.
@@ -436,6 +443,15 @@ command, prefixed with `REPO__`.  In addition, there is an optional
 attribute "keep" which accepts the case insensitive values "true"
 (default) or "false". This attribute determines whether or not the
 annotation will be kept when exported with the manifest subcommand.
+
+### Element sparse-path
+
+Zero or more sparse-path elements may be specified as children of a
+project element or an extend-project element. Each element specifies a
+path to include in the sparse-checkout when `sparse-checkout` is enabled.
+
+Attribute `path`: A path relative to the project root to include in the
+sparse-checkout. Uses cone mode for better performance.
 
 ### Element copyfile
 
