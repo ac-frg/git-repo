@@ -395,6 +395,11 @@ attributes of an existing project without completely replacing the
 existing project definition.  This makes the local manifest more robust
 against changes to the original manifest.
 
+The `extend-project` element can also contain `annotation`, `copyfile`, and
+`linkfile` child elements. These are added to the project's definition. A
+`copyfile` or `linkfile` with a `dest` that already exists in the project
+will overwrite the original.
+
 Attribute `path`: If specified, limit the change to projects checked out
 at the specified path, rather than all projects with the given name.
 
