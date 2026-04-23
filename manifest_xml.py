@@ -1644,10 +1644,16 @@ https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md
                     repo_hooks_project = None
 
                 if not removed_project and not XmlBool(node, "optional", False):
-                    raise ManifestParseError(
-                        "remove-project element specifies non-existent "
-                        "project: %s" % node.toxml()
+                    override = self._outer_client.manifestFileOverrides.get(
+                        self.path_prefix
                     )
+                    if not (override and self.manifestFile == override):
+                        print(
+                            "warning: manifest: remove-project element "
+                            "specifies non-existent project: %s"
+                            % node.toxml(),
+                            file=sys.stderr,
+                        )
 
         if failed_revision_changes:
             raise ManifestParseError(
