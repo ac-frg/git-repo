@@ -127,6 +127,88 @@ class ProjectTests(unittest.TestCase):
             ).strip()
             self.assertEqual(expected, fakeproj.work_git.GetHead())
 
+    def _get_derived_subproject_url(self, submodule_url):
+        with tempfile.TemporaryDirectory(prefix="repo-tests") as tempdir:
+
+            class FakeManifest:
+                def __init__(self, topdir):
+                    self.topdir = topdir
+                    self.globalConfig = None
+                    self.is_multimanifest = False
+                    self.path_prefix = ""
+                    self.paths = {}
+
+                def GetSubprojectName(self, parent, path):
+                    return path
+
+                def GetSubprojectPaths(self, parent, name, path):
+                    relpath = path
+                    worktree = os.path.join(self.topdir, path)
+                    gitdir = os.path.join(self.topdir, f"{path}.git")
+                    objdir = os.path.join(self.topdir, f"{path}.obj")
+                    os.makedirs(worktree, exist_ok=True)
+                    os.makedirs(gitdir, exist_ok=True)
+                    os.makedirs(objdir, exist_ok=True)
+                    return relpath, worktree, gitdir, objdir
+
+            manifest = FakeManifest(tempdir)
+            worktree = os.path.join(tempdir, "parent")
+            gitdir = os.path.join(tempdir, "parent.git")
+            objdir = os.path.join(tempdir, "parent.obj")
+            os.makedirs(worktree)
+            os.makedirs(gitdir)
+            os.makedirs(objdir)
+
+            parent = project.Project(
+                manifest=manifest,
+                name="parent",
+                remote=project.RemoteSpec(
+                    "origin", url="https://example.com/platform/superproject"
+                ),
+                gitdir=gitdir,
+                objdir=objdir,
+                worktree=worktree,
+                relpath="parent",
+                revisionExpr="refs/heads/main",
+                revisionId=None,
+            )
+
+            def fake_get_submodules(current):
+                if current is parent:
+                    return [("subrev", "child", submodule_url, "false")]
+                return []
+
+            with mock.patch.object(
+                project.Project, "_GetSubmodules", autospec=True
+            ) as get_submodules:
+                get_submodules.side_effect = fake_get_submodules
+                result = parent.GetDerivedSubprojects()
+
+            self.assertEqual(1, len(result))
+            return result[0].remote.url
+
+    def test_derived_subproject_joins_only_git_relative_urls(self):
+        tests = (
+            (
+                "./submodule",
+                "https://example.com/platform/superproject/submodule",
+            ),
+            ("../sibling", "https://example.com/platform/sibling"),
+        )
+        for submodule_url, expected in tests:
+            with self.subTest(submodule_url=submodule_url):
+                self.assertEqual(
+                    expected, self._get_derived_subproject_url(submodule_url)
+                )
+
+    def test_derived_subproject_leaves_dot_prefixed_names_unchanged(self):
+        for submodule_url in (".foo", "..bar"):
+            with self.subTest(submodule_url=submodule_url):
+                self.assertEqual(
+                    submodule_url,
+                    self._get_derived_subproject_url(submodule_url),
+                )
+
 
 class CopyLinkTestCase(unittest.TestCase):
     """TestCase for stub repo client checkouts.
