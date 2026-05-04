@@ -226,3 +226,21 @@ def test_get_sync_analysis_state_data(rw_config_file: Path) -> None:
     for key, value in TESTS:
         assert sync_data[f"{git_config.SYNC_STATE_PREFIX}{key}"] == value
     assert sync_data[f"{git_config.SYNC_STATE_PREFIX}main.synctime"]
+
+
+def test_remote_save_with_push_url_without_projectname(
+    rw_config_file: Path,
+) -> None:
+    """Test saving a remote pushUrl when projectname is unset."""
+    config = git_config.GitConfig(str(rw_config_file))
+    remote = config.GetRemote("origin")
+    remote.url = "https://example.com/repo"
+    remote.pushUrl = "ssh://example.com"
+    remote.projectname = None
+
+    remote.Save()
+
+    written_config = git_config.GitConfig(str(rw_config_file))
+    assert (
+        written_config.GetString("remote.origin.pushurl") == "ssh://example.com"
+    )

@@ -724,7 +724,10 @@ class Remote:
     def Save(self):
         """Save this remote to the configuration."""
         self._Set("url", self.url)
-        if self.pushUrl is not None:
+        # projectname is initialized for projects listed in the manifest, but
+        # not for others (e.g. the manifest project). This class is used for
+        # all of them.
+        if self.pushUrl is not None and self.projectname is not None:
             self._Set("pushurl", self.pushUrl + "/" + self.projectname)
         else:
             self._Set("pushurl", self.pushUrl)
