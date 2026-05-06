@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa5deb54_020a3ea7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-05-06T12:19:41Z",
+      "side": 1,
+      "message": "Setting Verified +1 to indicate this is ready to submit, as per `CONTRIBUTING.md`",
+      "revId": "8626103ed611a72158bf1eb14fa2c413275ec2f6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
