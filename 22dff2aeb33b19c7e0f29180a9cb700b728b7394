@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bd41b84_a0fa6b4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-06T14:43:11Z",
+      "side": 1,
+      "message": "please add a unittest",
+      "revId": "22dff2aeb33b19c7e0f29180a9cb700b728b7394",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72118a86_487a9bea",
+        "filename": "git_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-06T14:43:11Z",
+      "side": 1,
+      "message": "add a breadcrumb here that while projectname is initialized for projects listed in the manifest, it isn\u0027t for others (e.g. the manifest project), and repo uses this class for all of them.",
+      "fixSuggestions": [
+        {
+          "fixId": "0f9c3da5_30f8ce07",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "git_config.py",
+              "range": {
+                "startLine": 1,
+                "startChar": 0,
+                "endLine": 1,
+                "endChar": 0
+              },
+              "replacement": "        # projectname is initialized for projects listed in the manifest, but\n        # not for others (e.g. the manifest project). This class is used for\n        # all of them.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "22dff2aeb33b19c7e0f29180a9cb700b728b7394",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

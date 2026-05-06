@@ -34,6 +34,24 @@
       "parentUuid": "5a37ff92_1743c09a",
       "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbfd30ee_eea63a44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-06T14:43:11Z",
+      "side": 1,
+      "message": "the manifest project doesn\u0027t get a projectname because it\u0027s not in the repo client checkout, and typically people don\u0027t push from it.  the \u003cremote\u003e and \u003cproject\u003e settings in the manifest are combined via these settings to generate the pushurl.\n\nin CrOS, we actually add the manifest project to the manifest itself so it\u0027s easy for people to make changes \u0026 upload (via normal `repo upload`).  but they wouldn\u0027t be modifying .repo/manifests/ for it.\n\nthat said, i don\u0027t think it\u0027s wrong to set pushurl and hack .repo/manifests locally.  it\u0027s not an officially supported flow, but we can avoid blowing up in reasonable situations like this.\n\ni see your first commit message lacked any details which is when i started this thread, and you happened to fix that at the same time.",
+      "parentUuid": "c72d3f00_b9e88e1e",
+      "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
