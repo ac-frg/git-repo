@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import List
+from typing import List, Optional
 
 
 class BaseRepoError(Exception):
@@ -98,13 +98,33 @@ class EditorError(RepoError):
 class GitError(RepoError):
     """Unspecified git related error."""
 
-    def __init__(self, message, command_args=None, **kwargs):
+    _STDERR_TAIL_LINES = 20
+
+    def __init__(
+        self,
+        message: str,
+        command_args: Optional[list] = None,
+        rc: Optional[int] = None,
+        stderr: Optional[str] = None,
+        **kwargs,
+    ):
         super().__init__(message, **kwargs)
         self.message = message
         self.command_args = command_args
+        self.rc = rc
+        self.stderr = stderr
 
-    def __str__(self):
-        return self.message
+    def __str__(self) -> str:
+        msg = self.message
+        if self.rc is not None:
+            msg += f" (exit code {self.rc})"
+        if self.stderr:
+            tail = "\n".join(
+                self.stderr.strip().splitlines()[-self._STDERR_TAIL_LINES :]
+            )
+            if tail:
+                msg += ":\n" + tail
+        return msg
 
 
 class GitAuthError(RepoExitError):

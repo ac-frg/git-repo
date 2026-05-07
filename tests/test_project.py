@@ -482,6 +482,52 @@ class MigrateWorkTreeTests(unittest.TestCase):
             )
 
 
+class GitErrorFormattingTests(unittest.TestCase):
+    """Check GitError.__str__ formatting with rc and stderr."""
+
+    def test_message_only(self):
+        """Plain message without rc or stderr."""
+        e = error.GitError("something broke")
+        self.assertEqual(str(e), "something broke")
+
+    def test_with_rc(self):
+        """Message with an exit code."""
+        e = error.GitError("checkout failed", rc=1)
+        self.assertEqual(str(e), "checkout failed (exit code 1)")
+
+    def test_with_rc_and_stderr(self):
+        """Message with exit code and stderr tail."""
+        e = error.GitError(
+            "my/project checkout abc123",
+            rc=1,
+            stderr="error: not found\n",
+        )
+        self.assertEqual(
+            str(e),
+            "my/project checkout abc123 (exit code 1):\nerror: not found",
+        )
+
+    def test_empty_stderr_omitted(self):
+        """Empty stderr should not add a trailing colon."""
+        e = error.GitError("my/project checkout abc123", rc=1, stderr="")
+        self.assertEqual(str(e), "my/project checkout abc123 (exit code 1)")
+
+    def test_none_stderr_omitted(self):
+        """None stderr should not add a trailing colon."""
+        e = error.GitError("my/project checkout abc123", rc=1, stderr=None)
+        self.assertEqual(str(e), "my/project checkout abc123 (exit code 1)")
+
+    def test_stderr_truncated_to_20_lines(self):
+        """Only the last 20 lines of stderr should appear."""
+        lines = [f"line {i}" for i in range(30)]
+        stderr = "\n".join(lines) + "\n"
+        e = error.GitError("op failed", rc=128, stderr=stderr)
+        msg = str(e)
+        self.assertIn("line 10", msg)
+        self.assertIn("line 29", msg)
+        self.assertNotIn("line 9", msg)
+
+
 class ManifestPropertiesFetchedCorrectly(unittest.TestCase):
     """Ensure properties are fetched properly."""
 
@@ -824,3 +870,94 @@ class SyncOptimizationTests(unittest.TestCase):
 
                 self.assertTrue(res)
                 mock_git_cmd.assert_not_called()
+
+
+class InitWorkTreeReadTreeErrorTest(unittest.TestCase):
+    """Check that _InitWorkTree includes stderr in read-tree errors."""
+
+    def _setup_project(self, tempdir: str) -> FakeProject:
+        """Create a FakeProject wired for _InitWorkTree."""
+        fakeproj = FakeProject(tempdir)
+
+        readme = os.path.join(tempdir, "readme")
+        with open(readme, "w") as f:
+            f.write("test")
+        fakeproj.work_git.add("readme")
+        fakeproj.work_git.commit("-mInit")
+
+        worktree = os.path.join(tempdir, "sub", "worktree")
+        fakeproj.worktree = worktree
+        fakeproj.objdir = fakeproj.gitdir
+        fakeproj.use_git_worktrees = False
+        fakeproj.parent = None
+
+        gitdir = fakeproj.gitdir
+
+        def _createDotGit(dg: str) -> None:
+            os.makedirs(os.path.dirname(dg), exist_ok=True)
+            with open(dg, "w") as f:
+                f.write("gitdir: %s\n" % gitdir)
+
+        fakeproj._createDotGit = _createDotGit
+        fakeproj.GetRevisionId = lambda *a, **kw: "abc123"
+        fakeproj._CopyAndLinkFiles = lambda: None
+
+        return fakeproj
+
+    def test_read_tree_failure_includes_stderr_and_exit_code(self):
+        """Verify read-tree failure includes exit code and stderr."""
+        with utils_for_test.TempGitTree() as tempdir:
+            fakeproj = self._setup_project(tempdir)
+            dotgit = os.path.join(fakeproj.worktree, ".git")
+
+            mock_git_cmd = mock.MagicMock()
+            mock_git_cmd.Wait.return_value = 128
+            mock_git_cmd.rc = 128
+            mock_git_cmd.stderr = (
+                "error: unable to read tree abc123\n"
+                "fatal: failed to unpack tree object abc123\n"
+            )
+
+            with mock.patch("project.GitCommand", return_value=mock_git_cmd):
+                with self.assertRaises(error.GitError) as ctx:
+                    project.Project._InitWorkTree(fakeproj)
+
+                msg = str(ctx.exception)
+                self.assertIn("exit code 128", msg)
+                self.assertIn("fatal: failed to unpack tree", msg)
+                self.assertIn(fakeproj.name, msg)
+                self.assertFalse(os.path.exists(dotgit))
+
+    def test_read_tree_failure_empty_stderr(self):
+        """Verify read-tree failure still includes exit code with no stderr."""
+        with utils_for_test.TempGitTree() as tempdir:
+            fakeproj = self._setup_project(tempdir)
+
+            mock_git_cmd = mock.MagicMock()
+            mock_git_cmd.Wait.return_value = 137
+            mock_git_cmd.rc = 137
+            mock_git_cmd.stderr = ""
+
+            with mock.patch("project.GitCommand", return_value=mock_git_cmd):
+                with self.assertRaises(error.GitError) as ctx:
+                    project.Project._InitWorkTree(fakeproj)
+
+                msg = str(ctx.exception)
+                self.assertIn("exit code 137", msg)
+                self.assertIn(fakeproj.name, msg)
+
+    def test_read_tree_success_no_error(self):
+        """Verify read-tree success does not raise."""
+        with utils_for_test.TempGitTree() as tempdir:
+            fakeproj = self._setup_project(tempdir)
+
+            mock_git_cmd = mock.MagicMock()
+            mock_git_cmd.Wait.return_value = 0
+            mock_git_cmd.rc = 0
+            mock_git_cmd.stderr = ""
+
+            with mock.patch("project.GitCommand", return_value=mock_git_cmd):
+                project.Project._InitWorkTree(fakeproj)
+
+                dotgit = os.path.join(fakeproj.worktree, ".git")
+                self.assertTrue(os.path.exists(dotgit))
