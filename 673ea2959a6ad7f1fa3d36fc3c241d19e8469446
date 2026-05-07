@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dd7030f_299a0b03",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-07T16:40:45Z",
+      "side": 1,
+      "message": "can you put the rest of this into an _ExecuteText method to match the json style ?",
+      "revId": "673ea2959a6ad7f1fa3d36fc3c241d19e8469446",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d374f3_a27b7202",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-07T16:40:45Z",
+      "side": 1,
+      "message": "add typing info to new methods\n\neven just `-\u003e Dict[str, Any]` is fine at this point",
+      "revId": "673ea2959a6ad7f1fa3d36fc3c241d19e8469446",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdf0acdd_e02420ee",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-07T16:40:45Z",
+      "side": 1,
+      "message": "```suggestion\n            \"local_branches\": list(project.GetBranches()),\n```",
+      "revId": "673ea2959a6ad7f1fa3d36fc3c241d19e8469446",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
