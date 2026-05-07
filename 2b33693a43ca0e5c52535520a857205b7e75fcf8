@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c65cae8_45395515",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-07T23:56:58Z",
+      "side": 1,
+      "message": "change LGTM, but please add a test",
+      "revId": "2b33693a43ca0e5c52535520a857205b7e75fcf8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723407c1_c0c25e6a",
+        "filename": "project.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2575,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-07T23:56:58Z",
+      "side": 1,
+      "message": "I believe with multi-manifest setups `GetProjectsWithName` can return projects with the same name but different remotes/objdirs. we should also check that the project shares the objdir\n```suggestion\n            if project.objdir \u003d\u003d self.objdir and project.gitdir !\u003d self.gitdir:\n```",
+      "range": {
+        "startLine": 2575,
+        "startChar": 15,
+        "endLine": 2575,
+        "endChar": 44
+      },
+      "revId": "2b33693a43ca0e5c52535520a857205b7e75fcf8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
