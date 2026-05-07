@@ -102,6 +102,12 @@ revision to a locally executed git command, use REPO_LREV.
 REPO_RREV is the name of the revision from the manifest, exactly
 as written in the manifest.
 
+REPO_UPSTREAM is the name of the upstream branch as specified in the
+manifest.
+
+REPO_DEST_BRANCH is the name of the destination branch for code review,
+as specified in the manifest.
+
 REPO_COUNT is the total number of projects being iterated.
 
 REPO_I is the current (1-based) iteration count. Can be used in
