@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d802bba_446e5bfe",
+        "filename": "man/repo-info.1",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:49:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ab7dd63_8919b0e8",
+      "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6682feca_6865d673",
@@ -35,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a9b1a33_f2306031",
+        "filename": "subcmds/info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:49:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6682feca_6865d673",
+      "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b65ad8c3_2f390fa4",
@@ -48,6 +84,24 @@
       "writtenOn": "2026-04-29T14:40:20Z",
       "side": 1,
       "message": "look at how subcmds/manifest.py prints JSON output\n\nfor now, that too can be duplicated",
+      "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9a1b5df_e2d7e9ee",
+        "filename": "subcmds/info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:49:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b65ad8c3_2f390fa4",
       "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -83,6 +137,24 @@
           ]
         }
       ],
+      "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4a163e_598449d3",
+        "filename": "tests/test_subcmds_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:49:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c810ee7_dd34191d",
       "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -132,6 +204,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b83d42e1_a7f21dd1",
+        "filename": "tests/test_subcmds_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:49:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30d229c1_618cccad",
+      "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b72d892a_ba089f85",
@@ -163,6 +253,24 @@
           ]
         }
       ],
+      "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c43c29b6_4f108334",
+        "filename": "tests/test_subcmds_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:49:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b72d892a_ba089f85",
       "revId": "9da526bfd01d6bbb7fc40599f7bd5089fc76fca9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
