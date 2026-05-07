@@ -16,6 +16,24 @@
       "message": "let\u0027s put a helper into platform_utils like `removedirs` ?  there\u0027s a standard `os.removedirs` which removes a directory tree if all dirs are empty.  not sure how it handles symlinks.  which makes me think we should define our own which recursively descends into the directory tree, not following symlinks, and deletes empty dirs \u0026 symlinks.\n\nthat in turn should make the changes to subcmds/sync.py \u0026 project.py simpler, and make unittesting cleaner.  i think the current project.py cleanup only handles directory depth of one.  we\u0027ve had requests in the past like turning `dest\u003dsub/dir/target` (which created `sub/dir/`) into `dest\u003dsub`.",
       "revId": "9747e37eda1c25ec806c50f8f62fd82a107a84e1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cabf1006_cd0cf550",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T20:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b657be_7a608f55",
+      "revId": "9747e37eda1c25ec806c50f8f62fd82a107a84e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
