@@ -33,6 +33,42 @@
       "message": "this seems to be a duplicate of https://gerrit-review.git.corp.google.com/c/git-repo/+/576801.  please reconcile them, especially since there are comments in both now.",
       "revId": "2534d3d5abec97dbf691fe11947b7ba78d45225f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "887f9e5f_cec27695",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:32:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "472d7503_a478426e",
+      "revId": "2534d3d5abec97dbf691fe11947b7ba78d45225f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12fa3688_1ce114a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:32:24Z",
+      "side": 1,
+      "message": "Done, sorry. Abandoning this one, but 576801 addresses comments on both.",
+      "parentUuid": "6b3ca86a_4c6e0ef9",
+      "revId": "2534d3d5abec97dbf691fe11947b7ba78d45225f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
