@@ -288,6 +288,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dac0cfc_a6d2c24e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T15:52:51Z",
+      "side": 1,
+      "message": "@gavinmak@google.com Yes. I decided to abandon this one because even though it was the less controversial from the list, it\u0027s clearly not :-) I prefer not to change behavior for now as that would require making changes to our infra, and there\u0027s more interesting things to upstream TBH.",
+      "parentUuid": "c232eead_48153db6",
+      "range": {
+        "startLine": 18,
+        "startChar": 42,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "9e6b9a25a4f71e0f33ad99e654488ff6652d926e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6e97cb76_6d7e9e6f",
