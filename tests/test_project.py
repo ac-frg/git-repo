@@ -365,6 +365,47 @@ class LinkFile(CopyLinkTestCase):
             os.path.join("git-project", "foo.txt"), os.readlink(dest)
         )
 
+    def test_replace_empty_dir_with_symlink(self):
+        """A linkfile should replace an empty real directory at the dest path.
+
+        This is the common case: the old linkfiles inside the directory were
+        already cleaned up by UpdateCopyLinkfileList, leaving an empty parent
+        directory behind.
+        """
+        src_dir = os.path.join(self.worktree, "dot-llms")
+        os.makedirs(src_dir)
+
+        dest = os.path.join(self.topdir, "mydir")
+        os.makedirs(dest)
+
+        lf = self.LinkFile("dot-llms", "mydir")
+        lf._Link()
+        self.assertTrue(os.path.islink(dest))
+        self.assertEqual(
+            os.path.join("git-project", "dot-llms"), os.readlink(dest)
+        )
+
+    def test_nonempty_dir_not_clobbered(self):
+        """A linkfile must not delete a non-empty directory.
+
+        If the user created files in a directory that a new linkfile wants
+        to replace, __linkIt should fail safely rather than deleting content.
+        """
+        src_dir = os.path.join(self.worktree, "dot-llms")
+        os.makedirs(src_dir)
+
+        dest = os.path.join(self.topdir, "mydir")
+        os.makedirs(dest)
+        user_file = os.path.join(dest, "user-notes.txt")
+        self.touch(user_file)
+
+        lf = self.LinkFile("dot-llms", "mydir")
+        lf._Link()
+        # The directory should NOT be replaced — user content is preserved.
+        self.assertFalse(os.path.islink(dest))
+        self.assertTrue(os.path.isdir(dest))
+        self.assertTrue(os.path.exists(user_file))
+
 
 class MigrateWorkTreeTests(unittest.TestCase):
     """Check _MigrateOldWorkTreeGitDir handling."""

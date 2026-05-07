@@ -13,6 +13,7 @@
 # limitations under the License.
 """Unittests for the subcmds/sync.py module."""
 
+import json
 import os
 import shutil
 import tempfile
@@ -1145,3 +1146,143 @@ class InterleavedSyncTest(unittest.TestCase):
         self.assertTrue(result.checkout_success)
         project.Sync_NetworkHalf.assert_called_once()
         project.Sync_LocalHalf.assert_not_called()
+
+
+class UpdateCopyLinkfileListTest(unittest.TestCase):
+    """Tests for Sync.UpdateCopyLinkfileList."""
+
+    def setUp(self):
+        self.tempdirobj = tempfile.TemporaryDirectory(prefix="repo_tests")
+        self.topdir = self.tempdirobj.name
+        self.repodir = os.path.join(self.topdir, ".repo")
+        os.makedirs(self.repodir)
+
+        manifest = mock.MagicMock()
+        manifest.subdir = self.repodir
+        self.manifest = manifest
+
+        git_event_log = mock.MagicMock(ErrorEvent=mock.Mock(return_value=None))
+        self.cmd = sync.Sync(
+            manifest=manifest,
+            outer_client=mock.MagicMock(),
+            git_event_log=git_event_log,
+        )
+        self.cmd.client = mock.MagicMock(topdir=self.topdir)
+
+    def tearDown(self):
+        self.tempdirobj.cleanup()
+
+    def _write_copylinkfile_json(self, data: dict) -> None:
+        path = os.path.join(self.repodir, "copy-link-files.json")
+        with open(path, "w") as f:
+            json.dump(data, f)
+
+    def _setup_projects(self, linkfile_dests: list) -> None:
+        project = mock.MagicMock()
+        project.linkfiles = [mock.MagicMock(dest=d) for d in linkfile_dests]
+        project.copyfiles = []
+        mock.patch.object(
+            self.cmd, "GetProjects", return_value=[project]
+        ).start()
+
+    def test_removes_old_symlink_dest(self):
+        """Old linkfile dests that are symlinks should be removed."""
+        old_dest = os.path.join(self.topdir, "old-link")
+        os.symlink("target", old_dest)
+
+        self._write_copylinkfile_json(
+            {"linkfile": ["old-link"], "copyfile": []}
+        )
+        self._setup_projects([])
+
+        self.cmd.UpdateCopyLinkfileList(self.manifest)
+        self.assertFalse(os.path.lexists(old_dest))
+
+    def test_does_not_delete_through_new_symlink(self):
+        """Old dests that resolve through a new symlink must not delete files.
+
+        When the manifest changes from individual linkfiles inside a directory
+        to a single directory linkfile, and _CopyAndLinkFiles has already
+        created the symlink (interleaved mode), cleanup must not follow the
+        symlink and delete real project files.
+        """
+        project_dir = os.path.join(self.topdir, "vendor", "tools", "llms")
+        os.makedirs(os.path.join(project_dir, "dot-llms", "rules"))
+        os.makedirs(os.path.join(project_dir, "dot-llms", "skills"))
+        with open(
+            os.path.join(project_dir, "dot-llms", "rules", "basics.md"), "w"
+        ) as f:
+            f.write("# basics")
+        with open(
+            os.path.join(project_dir, "dot-llms", "skills", "repo.md"), "w"
+        ) as f:
+            f.write("# repo")
+
+        # Simulate interleaved mode: .llms -> vendor/tools/llms/dot-llms.
+        llms_link = os.path.join(self.topdir, ".llms")
+        os.symlink("vendor/tools/llms/dot-llms", llms_link)
+
+        self._write_copylinkfile_json(
+            {"linkfile": [".llms/rules", ".llms/skills"], "copyfile": []}
+        )
+        self._setup_projects([".llms"])
+
+        self.cmd.UpdateCopyLinkfileList(self.manifest)
+
+        # Real project files must still exist.
+        self.assertTrue(
+            os.path.exists(
+                os.path.join(project_dir, "dot-llms", "rules", "basics.md")
+            )
+        )
+        self.assertTrue(
+            os.path.exists(
+                os.path.join(project_dir, "dot-llms", "skills", "repo.md")
+            ),
+        )
+        self.assertTrue(os.path.islink(llms_link))
+
+    def test_cleans_up_empty_parent_dirs(self):
+        """After removing old dests, empty parent directories are removed."""
+        llms_dir = os.path.join(self.topdir, ".llms")
+        os.makedirs(llms_dir)
+        os.symlink(
+            "../vendor/tools/llms/rules", os.path.join(llms_dir, "rules")
+        )
+        os.symlink(
+            "../vendor/tools/llms/skills",
+            os.path.join(llms_dir, "skills"),
+        )
+
+        self._write_copylinkfile_json(
+            {"linkfile": [".llms/rules", ".llms/skills"], "copyfile": []}
+        )
+        self._setup_projects([".llms"])
+
+        self.cmd.UpdateCopyLinkfileList(self.manifest)
+
+        self.assertFalse(os.path.lexists(os.path.join(llms_dir, "rules")))
+        self.assertFalse(os.path.lexists(os.path.join(llms_dir, "skills")))
+        # Parent directory should be removed since it's now empty.
+        self.assertFalse(os.path.exists(llms_dir))
+
+    def test_preserves_nonempty_parent_dirs(self):
+        """Non-empty parent directories are preserved after old dest removal."""
+        llms_dir = os.path.join(self.topdir, ".llms")
+        os.makedirs(llms_dir)
+        os.symlink(
+            "../vendor/tools/llms/rules", os.path.join(llms_dir, "rules")
+        )
+        with open(os.path.join(llms_dir, "my-notes.txt"), "w") as f:
+            f.write("user content")
+
+        self._write_copylinkfile_json(
+            {"linkfile": [".llms/rules"], "copyfile": []}
+        )
+        self._setup_projects([".llms"])
+
+        self.cmd.UpdateCopyLinkfileList(self.manifest)
+
+        self.assertFalse(os.path.lexists(os.path.join(llms_dir, "rules")))
+        self.assertTrue(os.path.exists(os.path.join(llms_dir, "my-notes.txt")))
+        self.assertTrue(os.path.isdir(llms_dir))
