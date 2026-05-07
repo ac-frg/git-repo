@@ -2151,8 +2151,8 @@ later is required to fix a server side protocol bug.
         for project_name in sorted(self._bloated_projects):
             warn_msg = (
                 f'warning: Project "{project_name}" is accumulating '
-                'unoptimized data. Please run "repo sync --auto-gc" or '
-                '"repo gc --repack" to clean up.'
+                'unoptimized data. Please run "git repack -a -d" in the '
+                'project directory or "repo gc --repack" to clean up.'
             )
             self.git_event_log.ErrorEvent(warn_msg)
             logger.warning(warn_msg)
