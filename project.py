@@ -453,9 +453,13 @@ class _LinkFile(NamedTuple):
             platform_utils.readlink(absDest) != relSrc
         ):
             try:
-                # Remove existing file first, since it might be read-only.
+                # Remove existing path first, since it might be read-only.
                 if os.path.lexists(absDest):
-                    platform_utils.remove(absDest)
+                    # removedirs handles symlinks, empty dirs, and nested
+                    # trees of stale linkfile dests without deleting user
+                    # content.  Falls through to symlink() if the path was
+                    # fully removed, or raises OSError if not.
+                    platform_utils.removedirs(absDest)
                 else:
                     dest_dir = os.path.dirname(absDest)
                     if not platform_utils.isdir(dest_dir):
