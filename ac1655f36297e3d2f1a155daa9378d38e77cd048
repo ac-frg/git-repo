@@ -1,0 +1,117 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "171229c9_f4301c93",
+        "filename": "platform_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-07T21:11:48Z",
+      "side": 1,
+      "message": "add typing to new functions\n```suggestion\ndef removedirs(path: str) -\u003e None:\n```",
+      "revId": "ac1655f36297e3d2f1a155daa9378d38e77cd048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d2db54_b857cbf4",
+        "filename": "platform_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-07T21:11:48Z",
+      "side": 1,
+      "message": "you don\u0027t need this at all -\u003e delete\n\nthe islink/isdir check below work fine in all scenarios (including not existing)",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9d926f14_fe1347f2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "platform_utils.py",
+              "range": {
+                "startLine": 234,
+                "startChar": 0,
+                "endLine": 237,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ac1655f36297e3d2f1a155daa9378d38e77cd048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d596160f_6041cf3e",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-07T21:11:48Z",
+      "side": 1,
+      "message": "this is the same call as the top of the function.  call it once \u0026 save the result in a variable to reuse here.",
+      "fixSuggestions": [
+        {
+          "fixId": "322dbb12_4b77d6aa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "subcmds/sync.py",
+              "range": {
+                "startLine": 1,
+                "startChar": 0,
+                "endLine": 1,
+                "endChar": 0
+              },
+              "replacement": "        projects \u003d self.GetProjects(\n            None, missing_ok\u003dTrue, manifest\u003dmanifest, all_manifests\u003dFalse\n        )\n"
+            },
+            {
+              "path": "subcmds/sync.py",
+              "range": {
+                "startLine": 1626,
+                "startChar": 0,
+                "endLine": 1629,
+                "endChar": 0
+              },
+              "replacement": "        for project in projects:\n"
+            },
+            {
+              "path": "subcmds/sync.py",
+              "range": {
+                "startLine": 1688,
+                "startChar": 0,
+                "endLine": 1691,
+                "endChar": 0
+              },
+              "replacement": "        for project in projects:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ac1655f36297e3d2f1a155daa9378d38e77cd048",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
