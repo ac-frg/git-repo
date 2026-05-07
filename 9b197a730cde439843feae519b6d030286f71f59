@@ -36,6 +36,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "352bb795_25523de4",
+        "filename": "subcmds/info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T21:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52b45f04_78cb8630",
+      "revId": "9b197a730cde439843feae519b6d030286f71f59",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c2e6c73_573ccd30",
@@ -49,6 +67,24 @@
       "writtenOn": "2026-05-07T18:21:51Z",
       "side": 1,
       "message": "add typing\n```suggestion\n    def _printSummary(self) -\u003e None:\n```",
+      "revId": "9b197a730cde439843feae519b6d030286f71f59",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db2e41c_9935a036",
+        "filename": "subcmds/info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 3424839
+      },
+      "writtenOn": "2026-05-07T21:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c2e6c73_573ccd30",
       "revId": "9b197a730cde439843feae519b6d030286f71f59",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
