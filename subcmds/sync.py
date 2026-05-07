@@ -1660,18 +1660,51 @@ later is required to fix a server side protocol bug.
                 - set(new_copyfile_paths)
             )
 
+            dirs_to_try_rmdir = set()
             for need_remove_file in need_remove_files:
-                # Try to remove the updated copyfile or linkfile.
-                # So, if the file is not exist, nothing need to do.
-                platform_utils.remove(
-                    os.path.join(self.client.topdir, need_remove_file),
-                    missing_ok=True,
+                need_remove_path = os.path.join(
+                    self.client.topdir, need_remove_file
                 )
+                if not os.path.lexists(need_remove_path):
+                    continue
+                if not platform_utils.islink(
+                    need_remove_path
+                ) and platform_utils.isdir(need_remove_path):
+                    try:
+                        os.rmdir(need_remove_path)
+                    except OSError:
+                        pass
+                else:
+                    platform_utils.remove(need_remove_path, missing_ok=True)
+
+                parent = os.path.dirname(need_remove_path)
+                if parent != self.client.topdir:
+                    dirs_to_try_rmdir.add(parent)
+
+            # Clean up empty parent directories left behind by removed
+            # linkfiles/copyfiles (e.g. .llms/ after removing .llms/rules
+            # and .llms/skills).  Only empty directories are removed.
+            for d in dirs_to_try_rmdir:
+                try:
+                    os.rmdir(d)
+                except OSError:
+                    pass
 
         # Create copy-link-files.json, save dest path of "copyfile" and
         # "linkfile".
         with open(copylinkfile_path, "w", encoding="utf-8") as fp:
             json.dump(new_paths, fp)
+
+        # Retry linkfile/copyfile creation for all projects.  In
+        # interleaved sync mode, _CopyAndLinkFiles runs before this
+        # cleanup, so linkfiles whose dest was blocked by an old
+        # directory may have failed.  _CopyAndLinkFiles is idempotent
+        # and skips dests that are already correct.
+        for project in self.GetProjects(
+            None, missing_ok=True, manifest=manifest, all_manifests=False
+        ):
+            project._CopyAndLinkFiles()
+
         return True
 
     def _SmartSyncSetup(self, opt, smart_sync_manifest_path, manifest):

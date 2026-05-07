@@ -453,9 +453,18 @@ class _LinkFile(NamedTuple):
             platform_utils.readlink(absDest) != relSrc
         ):
             try:
-                # Remove existing file first, since it might be read-only.
+                # Remove existing path first, since it might be read-only.
                 if os.path.lexists(absDest):
-                    platform_utils.remove(absDest)
+                    if not platform_utils.islink(
+                        absDest
+                    ) and platform_utils.isdir(absDest):
+                        # Only remove empty directories to avoid deleting
+                        # user content.  UpdateCopyLinkfileList cleans up
+                        # old linkfile dests and retries, so this directory
+                        # may become empty and succeed on the retry.
+                        os.rmdir(absDest)
+                    else:
+                        platform_utils.remove(absDest)
                 else:
                     dest_dir = os.path.dirname(absDest)
                     if not platform_utils.isdir(dest_dir):
