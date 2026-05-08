@@ -16,6 +16,24 @@
       "message": "is this correct ?  is even the existing code correct ?  this seems to assume that it\u0027s always `./` or `../`, but what about `.foo` or `..bar` ?\n\nshould we always use `urllib.parse.urljoin` and let it decide when it makes sense to join ?\n\nanother great reason for adding unittests.\n\nhttps://gerrit-review.googlesource.com/c/git-repo/+/147311 is the only previous discussion we have on this topic.",
       "revId": "e5d9b63d7f7c2dbf636fb3d97cfc25b532baae30",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b59c30_5019d5b4",
+        "filename": "project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2447,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-05-08T12:53:57Z",
+      "side": 1,
+      "message": "\u003e what about .foo or ..bar ?\n\nGood catch! Added a more explicit check to only cover \"./\" and \"../\".\n\n\u003e another great reason for adding unittests.\n\nAdded tests as well.",
+      "parentUuid": "7a525972_ba8047d7",
+      "revId": "e5d9b63d7f7c2dbf636fb3d97cfc25b532baae30",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
