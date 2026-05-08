@@ -70,6 +70,24 @@
       "parentUuid": "cbfd30ee_eea63a44",
       "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709bc69a_ddddc13d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-08T15:28:32Z",
+      "side": 1,
+      "message": "conversely, telling people they can\u0027t use the same repo tooling to manage the manifest (branches, upload, preupload checks, etc...) and they need to know the esoteric git/gerrit syntax is unintuitive.  and people trying to `repo sync` (which updates the manifest project) easily runs into conflicts or wedges it if people forget to clean up.  i\u0027ve seen this play out many times with devs.\n\nyou can temporarily test local manifest changes simply by running `repo sync -m ./manifest/default.xml` after making them in the `manifest/` dir that\u0027s part of the checkout.  that way you can do development on the manifest project in a standard way without sacrificing the stability of the rest of the checkout.",
+      "parentUuid": "62367baa_85ec45f1",
+      "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
