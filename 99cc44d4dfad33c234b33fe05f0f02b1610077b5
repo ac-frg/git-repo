@@ -88,6 +88,24 @@
       "parentUuid": "62367baa_85ec45f1",
       "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02928596_5d354b8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-05-08T15:43:55Z",
+      "side": 1,
+      "message": "\u003e you can temporarily test local manifest changes simply by running `repo sync -m ./manifest/default.xml` after making them in the manifest/ dir that\u0027s part of the checkout\n\nThanks, that\u0027s very useful! I stand corrected 🤓",
+      "parentUuid": "709bc69a_ddddc13d",
+      "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
