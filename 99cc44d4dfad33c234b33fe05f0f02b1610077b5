@@ -52,6 +52,24 @@
       "parentUuid": "c72d3f00_b9e88e1e",
       "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62367baa_85ec45f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-05-08T10:24:01Z",
+      "side": 1,
+      "message": "I find it confusing and unintuitive that the standard practice would be to manually add a checkout of the manifest.\n\nWhen I e.g. add a new repo to my manifest, I would normally patch that in `.repo/manifests`, and then do a `repo sync --no-manifest-update` to confirm that I can successfully sync against that new repo.\n\nIf I had a manually added checkout, I suppose I would have to temporarily `repo init` against that manifest checkout whenever I need to test something like this?",
+      "parentUuid": "cbfd30ee_eea63a44",
+      "revId": "99cc44d4dfad33c234b33fe05f0f02b1610077b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
