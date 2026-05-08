@@ -16,6 +16,24 @@
       "message": "This change is redundant. The XML manifest parser `manifest_xml.py` already parses the `enabled-list` attribute using `_ParseList()`, which splits by both whitespace and commas (via `re.split(r\"[,\\s]+\", field)`). As a result, `self._hooks_project.enabled_repo_hooks` is guaranteed to already be a normalized list of distinct hook name strings. Adding this iteration logic here provides no value.",
       "revId": "61b490e63b84cebd0c0c057ab78142a93b6000ba",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a769c9e_663e4184",
+        "filename": "hooks.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 3427767
+      },
+      "writtenOn": "2026-05-08T20:56:22Z",
+      "side": 1,
+      "message": "The version in my local checkout android_root/.repo/repo was very old, investigating why it was not updated periodically.",
+      "parentUuid": "addde091_f6f28d3f",
+      "revId": "61b490e63b84cebd0c0c057ab78142a93b6000ba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
