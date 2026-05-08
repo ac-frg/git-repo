@@ -105,3 +105,27 @@ def test_post_sync_argument_validation() -> None:
 
     finally:
         sys.stderr = old_stderr
+
+
+def test_post_sync_comma_separated_enabled_list() -> None:
+    """Test that post-sync hook works with comma-separated enabled-list."""
+
+    class FakeProject:
+
+        def __init__(self):
+            self.worktree = "/some/path"
+            self.enabled_repo_hooks = ["pre-upload,post-sync"]
+
+    hook = hooks.RepoHook(
+        hook_type="post-sync",
+        hooks_project=FakeProject(),
+        repo_topdir="/topdir",
+        manifest_url="https://gerrit",
+        allow_all_hooks=True,
+    )
+
+    hook._CheckHook = lambda: None
+    hook._ExecuteHook = lambda **kw: None
+
+    res = hook.Run(repo_topdir="/topdir", sync_duration_seconds=12.345)
+    assert res is True
