@@ -439,11 +439,16 @@ class RepoHook:
 
         # Do not do anything in case bypass_hooks is set, or
         # no-op if there is no hooks project or if hook is disabled.
+        enabled_hooks = []
+        if self._hooks_project:
+            for h in self._hooks_project.enabled_repo_hooks:
+                enabled_hooks.extend(h.split(","))
+
         if (
             self._bypass_hooks
             or not self._hooks_project
             or not self._script_fullpath
-            or self._hook_type not in self._hooks_project.enabled_repo_hooks
+            or self._hook_type not in enabled_hooks
         ):
             return True
 
