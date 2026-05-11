@@ -13,15 +13,28 @@
 # limitations under the License.
 
 import enum
+import functools
+import io
 import json
 import optparse
 import sys
-from typing import Any, Dict
+from typing import Any, Dict, List, NamedTuple
 
 from color import Coloring
+from command import DEFAULT_LOCAL_JOBS
 from command import PagedCommand
 from git_refs import R_HEADS
 from git_refs import R_M
+
+
+class BranchInfo(NamedTuple):
+    """Holds information about a branch in a project."""
+
+    relpath: str
+    name: str
+    commits: Any
+    date: str
+    is_current: bool
 
 
 class OutputFormat(enum.Enum):
@@ -41,6 +54,7 @@ class _Coloring(Coloring):
 
 class Info(PagedCommand):
     COMMON = True
+    PARALLEL_JOBS = DEFAULT_LOCAL_JOBS
     helpSummary = (
         "Get info on the manifest branch, current branch or unmerged branches"
     )
@@ -231,122 +245,192 @@ class Info(PagedCommand):
         self.text("----------------------------")
         self.out.nl()
 
+    @classmethod
+    def _DiffHelper(cls, project_idx: int, opt: Any) -> str:
+        """Helper for ParallelContext to get diff info for a project."""
+        buf = io.StringIO()
+        project = cls.get_parallel_context()["projects"][project_idx]
+        config = cls.get_parallel_context()["config"]
+
+        out = _Coloring(config)
+        out.redirect(buf)
+
+        heading = out.printer("heading", attr="bold")
+        headtext = out.nofmt_printer("headtext", fg="yellow")
+        redtext = out.printer("redtext", fg="red")
+        sha = out.printer("sha", fg="yellow")
+        text = out.nofmt_printer("text")
+        dimtext = out.printer("dimtext", attr="dim")
+
+        heading("Project: ")
+        headtext(project.name)
+        out.nl()
+
+        heading("Mount path: ")
+        headtext(project.worktree)
+        out.nl()
+
+        heading("Current revision: ")
+        headtext(project.GetRevisionId())
+        out.nl()
+
+        currentBranch = project.CurrentBranch
+        if currentBranch:
+            heading("Current branch: ")
+            headtext(currentBranch)
+            out.nl()
+
+        heading("Manifest revision: ")
+        headtext(project.revisionExpr)
+        out.nl()
+
+        localBranches = list(project.GetBranches().keys())
+        heading("Local Branches: ")
+        redtext(str(len(localBranches)))
+        if localBranches:
+            text(" [")
+            text(", ".join(localBranches))
+            text("]")
+        out.nl()
+
+        if opt.all:
+            if not opt.local:
+                project.Sync_NetworkHalf(quiet=True, current_branch_only=True)
+
+            branch = project.manifest.manifestProject.config.GetBranch(
+                "default"
+            ).merge
+            if branch.startswith(R_HEADS):
+                branch = branch[len(R_HEADS) :]
+            logTarget = R_M + branch
+
+            bareTmp = project.bare_git._bare
+            project.bare_git._bare = False
+            localCommits = project.bare_git.rev_list(
+                "--abbrev=8",
+                "--abbrev-commit",
+                "--pretty=oneline",
+                logTarget + "..",
+                "--",
+            )
+
+            originCommits = project.bare_git.rev_list(
+                "--abbrev=8",
+                "--abbrev-commit",
+                "--pretty=oneline",
+                ".." + logTarget,
+                "--",
+            )
+            project.bare_git._bare = bareTmp
+
+            heading("Local Commits: ")
+            redtext(str(len(localCommits)))
+            dimtext(" (on current branch)")
+            out.nl()
+
+            for c in localCommits:
+                split = c.split()
+                sha(split[0] + " ")
+                text(" ".join(split[1:]))
+                out.nl()
+
+            text("----------------------------")
+            out.nl()
+
+            heading("Remote Commits: ")
+            redtext(str(len(originCommits)))
+            out.nl()
+
+            for c in originCommits:
+                split = c.split()
+                sha(split[0] + " ")
+                text(" ".join(split[1:]))
+                out.nl()
+
+        text("----------------------------")
+        out.nl()
+
+        return buf.getvalue()
+
     def _printDiffInfo(self, opt, args):
-        # We let exceptions bubble up to main as they'll be well structured.
         projs = self.GetProjects(args, all_manifests=not opt.this_manifest_only)
 
-        for p in projs:
-            self.heading("Project: ")
-            self.headtext(p.name)
-            self.out.nl()
+        def _ProcessResults(_pool, _output, results):
+            for output in results:
+                if output:
+                    print(output, end="")
 
-            self.heading("Mount path: ")
-            self.headtext(p.worktree)
-            self.out.nl()
+        with self.ParallelContext():
+            self.get_parallel_context()["projects"] = projs
+            self.get_parallel_context()[
+                "config"
+            ] = self.manifest.manifestProject.config
 
-            self.heading("Current revision: ")
-            self.headtext(p.GetRevisionId())
-            self.out.nl()
+            self.ExecuteInParallel(
+                opt.jobs,
+                functools.partial(self._DiffHelper, opt=opt),
+                range(len(projs)),
+                callback=_ProcessResults,
+                ordered=True,
+                chunksize=1,
+            )
 
-            currentBranch = p.CurrentBranch
-            if currentBranch:
-                self.heading("Current branch: ")
-                self.headtext(currentBranch)
-                self.out.nl()
+    @classmethod
+    def _OverviewHelper(cls, project_idx: int, opt: Any) -> List[BranchInfo]:
+        """Helper to get overview of uploadable branches."""
+        project = cls.get_parallel_context()["projects"][project_idx]
 
-            self.heading("Manifest revision: ")
-            self.headtext(p.revisionExpr)
-            self.out.nl()
+        branches = []
+        br = [project.GetUploadableBranch(x) for x in project.GetBranches()]
+        br = [x for x in br if x]
+        if opt.current_branch:
+            br = [x for x in br if x.name == project.CurrentBranch]
 
-            localBranches = list(p.GetBranches().keys())
-            self.heading("Local Branches: ")
-            self.redtext(str(len(localBranches)))
-            if localBranches:
-                self.text(" [")
-                self.text(", ".join(localBranches))
-                self.text("]")
-            self.out.nl()
-
-            if self.opt.all:
-                self.findRemoteLocalDiff(p)
-
-            self.printSeparator()
-
-    def findRemoteLocalDiff(self, project):
-        # Fetch all the latest commits.
-        if not self.opt.local:
-            project.Sync_NetworkHalf(quiet=True, current_branch_only=True)
-
-        branch = self.manifest.manifestProject.config.GetBranch("default").merge
-        if branch.startswith(R_HEADS):
-            branch = branch[len(R_HEADS) :]
-        logTarget = R_M + branch
-
-        bareTmp = project.bare_git._bare
-        project.bare_git._bare = False
-        localCommits = project.bare_git.rev_list(
-            "--abbrev=8",
-            "--abbrev-commit",
-            "--pretty=oneline",
-            logTarget + "..",
-            "--",
-        )
-
-        originCommits = project.bare_git.rev_list(
-            "--abbrev=8",
-            "--abbrev-commit",
-            "--pretty=oneline",
-            ".." + logTarget,
-            "--",
-        )
-        project.bare_git._bare = bareTmp
-
-        self.heading("Local Commits: ")
-        self.redtext(str(len(localCommits)))
-        self.dimtext(" (on current branch)")
-        self.out.nl()
-
-        for c in localCommits:
-            split = c.split()
-            self.sha(split[0] + " ")
-            self.text(" ".join(split[1:]))
-            self.out.nl()
-
-        self.printSeparator()
-
-        self.heading("Remote Commits: ")
-        self.redtext(str(len(originCommits)))
-        self.out.nl()
-
-        for c in originCommits:
-            split = c.split()
-            self.sha(split[0] + " ")
-            self.text(" ".join(split[1:]))
-            self.out.nl()
+        for b in br:
+            branches.append(
+                BranchInfo(
+                    relpath=project.RelPath(local=opt.this_manifest_only),
+                    name=b.name,
+                    commits=b.commits,
+                    date=b.date,
+                    is_current=b.name == project.CurrentBranch,
+                )
+            )
+        return branches
 
     def _printCommitOverview(self, opt, args):
+        projs = self.GetProjects(args, all_manifests=not opt.this_manifest_only)
+
         all_branches = []
-        for project in self.GetProjects(
-            args, all_manifests=not opt.this_manifest_only
-        ):
-            br = [project.GetUploadableBranch(x) for x in project.GetBranches()]
-            br = [x for x in br if x]
-            if self.opt.current_branch:
-                br = [x for x in br if x.name == project.CurrentBranch]
-            all_branches.extend(br)
+
+        def _ProcessResults(_pool, _output, results):
+            for branches in results:
+                all_branches.extend(branches)
+
+        with self.ParallelContext():
+            self.get_parallel_context()["projects"] = projs
+
+            self.ExecuteInParallel(
+                opt.jobs,
+                functools.partial(self._OverviewHelper, opt=opt),
+                range(len(projs)),
+                callback=_ProcessResults,
+                ordered=True,
+                chunksize=1,
+            )
 
         if not all_branches:
             return
 
         self.out.nl()
         self.heading("Projects Overview")
-        project = None
+        current_relpath = None
 
         for branch in all_branches:
-            if project != branch.project:
-                project = branch.project
+            if current_relpath != branch.relpath:
+                current_relpath = branch.relpath
                 self.out.nl()
-                self.headtext(project.RelPath(local=opt.this_manifest_only))
+                self.headtext(current_relpath)
                 self.out.nl()
 
             commits = branch.commits
@@ -354,7 +438,7 @@ class Info(PagedCommand):
             self.text(
                 "%s %-33s (%2d commit%s, %s)"
                 % (
-                    branch.name == project.CurrentBranch and "*" or " ",
+                    branch.is_current and "*" or " ",
                     branch.name,
                     len(commits),
                     len(commits) != 1 and "s" or "",
