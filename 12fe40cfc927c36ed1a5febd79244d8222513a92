@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15717493_b9bb802d",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-11T23:36:33Z",
+      "side": 1,
+      "message": "I extracted this to a class method so it can be executed in parallel by ExecuteInParallel. I avoided instance methods as they are harder to pickle for multiprocessing.",
+      "revId": "12fe40cfc927c36ed1a5febd79244d8222513a92",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd801ed8_684d0513",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-11T23:36:33Z",
+      "side": 1,
+      "message": "I used a StringIO buffer to collect output for each project and print it in order in the main process. This avoids interleaved output from multiple processes.",
+      "revId": "12fe40cfc927c36ed1a5febd79244d8222513a92",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4115cc85_a031e605",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-11T23:36:33Z",
+      "side": 1,
+      "message": "I inlined findRemoteLocalDiff here to make it easier to run within the worker without having to pass around the self reference or split it further.",
+      "revId": "12fe40cfc927c36ed1a5febd79244d8222513a92",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be49904f_dfa441b8",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-11T23:36:33Z",
+      "side": 1,
+      "message": "This helper parallelizes the branch collection which was the slow part of --overview due to git calls. I returned a list of picklable BranchInfo tuples.",
+      "revId": "12fe40cfc927c36ed1a5febd79244d8222513a92",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
