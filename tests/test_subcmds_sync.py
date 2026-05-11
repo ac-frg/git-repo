@@ -489,6 +489,7 @@ class CheckForBloatedProjects(unittest.TestCase):
         self.project.name = "project"
         self.project.Exists = True
         self.project.worktree = "worktree"
+        self.project.stateless_prune_needed = False
         self.cmd.git_event_log = mock.MagicMock()
         self.cmd._bloated_projects = []
 
@@ -529,6 +530,21 @@ class CheckForBloatedProjects(unittest.TestCase):
             self.cmd._CheckForBloatedProjects([self.project], self.opt)
 
         self.assertEqual(self.cmd._bloated_projects, ["project"])
+
+    @mock.patch("subcmds.sync.git_require")
+    @mock.patch("subcmds.sync.Progress")
+    def test_stateless_prune_excluded(self, mock_progress, mock_git_require):
+        """Test that projects pruned for stateless sync are excluded."""
+        mock_git_require.return_value = True
+        self.project.stateless_prune_needed = True
+
+        self.cmd.ExecuteInParallel = mock.Mock()
+
+        with mock.patch.object(self.cmd, "ParallelContext"):
+            self.cmd._CheckForBloatedProjects([self.project], self.opt)
+
+        self.assertFalse(self.cmd.ExecuteInParallel.called)
+        self.assertEqual(self.cmd._bloated_projects, [])
 
 
 class GCProjectsTest(unittest.TestCase):

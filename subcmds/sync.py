@@ -1459,7 +1459,11 @@ later is required to fix a server side protocol bug.
         if not git_require((2, 23, 0)):
             return
 
-        projects = [p for p in projects if p.clone_depth]
+        projects = [
+            p
+            for p in projects
+            if p.clone_depth and not p.stateless_prune_needed
+        ]
         if not projects:
             return
 
