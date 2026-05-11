@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f715d05_a5d2f32a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4803569
+      },
+      "writtenOn": "2026-05-11T11:12:49Z",
+      "side": 1,
+      "message": "https://gerrit.googlesource.com/git-repo",
+      "revId": "27d2232eb3cc4ec91fe6143b5d5c0d6f72861248",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
