@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7df6cc6_3d0ec268",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1668,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-11T19:28:43Z",
+      "side": 1,
+      "message": "`platform_utils.removedirs` returns early if `need_remove_path` is not a dir. as-is, it doesn\u0027t seem copyfiles are cleaned up?",
+      "range": {
+        "startLine": 1668,
+        "startChar": 16,
+        "endLine": 1668,
+        "endChar": 41
+      },
+      "revId": "afba872360c9d3ff00f02a84d72dab31896bf71c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
