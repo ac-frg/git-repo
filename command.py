@@ -101,6 +101,11 @@ class Command:
     def WantPager(self, _opt):
         return False
 
+    @staticmethod
+    def is_multiprocessing_active() -> bool:
+        """Whether the current process is a worker in a pool."""
+        return multiprocessing.current_process().name != "MainProcess"
+
     def ReadEnvironmentOptions(self, opts):
         """Set options from environment variables."""
 

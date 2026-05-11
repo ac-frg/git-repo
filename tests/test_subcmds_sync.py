@@ -477,6 +477,56 @@ class GetPreciousObjectsState(unittest.TestCase):
         )
 
 
+class KeyboardInterruptTest(unittest.TestCase):
+    """Tests for KeyboardInterrupt handling in Sync operations."""
+
+    def setUp(self):
+        self.project = mock.MagicMock(name="project")
+        self.project.name = "project"
+        self.project.relpath = "proj"
+        self.project.manifest.IsArchive = False
+        self.opt = mock.Mock()
+        self.opt.quiet = True
+        self.opt.verbose = False
+        self.opt.tags = False
+
+        self.sync_dict = {}
+
+        self.get_parallel_context_mock = {
+            "projects": [self.project],
+            "sync_dict": self.sync_dict,
+            "ssh_proxy": None,
+        }
+
+    @mock.patch("subcmds.sync.Sync.is_multiprocessing_active")
+    def test_fetch_one_keyboard_interrupt_main_process(self, mock_is_active):
+        """Test that _FetchOne re-raises KeyboardInterrupt if not worker."""
+        mock_is_active.return_value = False
+        self.project.Sync_NetworkHalf.side_effect = KeyboardInterrupt()
+
+        with mock.patch.object(
+            sync.Sync,
+            "get_parallel_context",
+            return_value=self.get_parallel_context_mock,
+        ):
+            with self.assertRaises(KeyboardInterrupt):
+                sync.Sync._FetchOne(self.opt, 0)
+
+    @mock.patch("subcmds.sync.Sync.is_multiprocessing_active")
+    def test_fetch_one_keyboard_interrupt_worker_process(self, mock_is_active):
+        """Test that _FetchOne suppresses KeyboardInterrupt in workers."""
+        mock_is_active.return_value = True
+        self.project.Sync_NetworkHalf.side_effect = KeyboardInterrupt()
+
+        with mock.patch.object(
+            sync.Sync,
+            "get_parallel_context",
+            return_value=self.get_parallel_context_mock,
+        ):
+            result = sync.Sync._FetchOne(self.opt, 0)
+            self.assertFalse(result.success)
+
+
 class CheckForBloatedProjects(unittest.TestCase):
     """Tests for Sync._CheckForBloatedProjects."""
 

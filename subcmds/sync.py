@@ -841,6 +841,8 @@ later is required to fix a server side protocol bug.
                 )
         except KeyboardInterrupt:
             logger.error("Keyboard interrupt while processing %s", project.name)
+            if not cls.is_multiprocessing_active():
+                raise
         except GitError as e:
             logger.error("error.GitError: Cannot fetch %s", e)
             errors.append(e)
@@ -1104,6 +1106,8 @@ later is required to fix a server side protocol bug.
             errors.extend(syncbuf.errors)
         except KeyboardInterrupt:
             logger.error("Keyboard interrupt while processing %s", project.name)
+            if not cls.is_multiprocessing_active():
+                raise
         except GitError as e:
             logger.error(
                 "error.GitError: Cannot checkout %s: %s", project.name, e
@@ -2410,6 +2414,8 @@ later is required to fix a server side protocol bug.
                 logger.error(
                     "Keyboard interrupt while processing %s", project.name
                 )
+                if not cls.is_multiprocessing_active():
+                    raise
             except GitError as e:
                 fetch_errors.append(e)
                 logger.error("error.GitError: Cannot fetch %s", e)
@@ -2460,6 +2466,8 @@ later is required to fix a server side protocol bug.
                     logger.error(
                         "Keyboard interrupt while processing %s", project.name
                     )
+                    if not cls.is_multiprocessing_active():
+                        raise
                 except GitError as e:
                     checkout_errors.append(e)
                     logger.error(
