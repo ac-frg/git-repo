@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f348830_ccfe1ff8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4346027
+      },
+      "writtenOn": "2026-05-11T23:05:07Z",
+      "side": 1,
+      "message": "Added some tests.\nThis change regrettably drops the fetch optimization when there are two projects that are shallow and have no changes to their revision.\nI wonder if together with _SharingProjectHasShallow something like \"...and this gitdir doesn\u0027t have a shallow file\" can be checked.",
+      "parentUuid": "7c65cae8_45395515",
+      "revId": "2b33693a43ca0e5c52535520a857205b7e75fcf8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "723407c1_c0c25e6a",
         "filename": "project.py",
         "patchSetId": 3
