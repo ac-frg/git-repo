@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02d19d0a_72e0a760",
+        "filename": "error.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-12T17:41:13Z",
+      "side": 1,
+      "message": "`GitCommandError` which inherits from this class already defines git_rc, git_stdout, and git_stderr: https://cs.opensource.google/gerrit/gerrit/git-repo/+/main:git_command.py;l\u003d597;drc\u003d573983948ae0550b0f655ea81431bb08ce0bd540\n\nit also has a `GIT_ERROR_STDERR_LINES`, but for stderr head. we should probably change git_command to unify on all these (rc/stderr, tail truncate, and the const), either in this change or a followup",
+      "range": {
+        "startLine": 114,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 28
+      },
+      "revId": "f833a67265afe8b3831dfe3617a989ac964159e8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
