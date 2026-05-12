@@ -438,7 +438,7 @@ class GitConfig:
         if p.Wait() == 0:
             return p.stdout
         else:
-            raise GitError(f"git config {str(args)}: {p.stderr}")
+            raise GitError(f"git {' '.join(command)}: {p.stderr}")
 
 
 class RepoConfig(GitConfig):
