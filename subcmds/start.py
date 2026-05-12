@@ -104,6 +104,7 @@ revision specified in the manifest.
 
     def Execute(self, opt, args):
         nb = args[0]
+        self.TryOverrideManifestWithSmartSync()
         err_projects = []
         err = []
         projects = []
