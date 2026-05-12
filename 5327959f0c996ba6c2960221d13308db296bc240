@@ -88,6 +88,24 @@
       "parentUuid": "5e66efc8_4236da41",
       "revId": "5327959f0c996ba6c2960221d13308db296bc240",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbd9b6ab_c9b73d86",
+        "filename": "man/repo-manifest.1",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-12T17:30:38Z",
+      "side": 1,
+      "message": "doh. Reverting to unbreak, will reupload.",
+      "parentUuid": "09fb6841_3e7ac5b8",
+      "revId": "5327959f0c996ba6c2960221d13308db296bc240",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
