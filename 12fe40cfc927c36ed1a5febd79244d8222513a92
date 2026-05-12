@@ -73,6 +73,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6b858ad_54373d34",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-12T16:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e295051_ed2eb1cd",
+      "revId": "12fe40cfc927c36ed1a5febd79244d8222513a92",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15717493_b9bb802d",
@@ -121,6 +139,24 @@
       "writtenOn": "2026-05-12T15:05:29Z",
       "side": 1,
       "message": "add typing \u0026 at least one-liner docstring to new functions",
+      "revId": "12fe40cfc927c36ed1a5febd79244d8222513a92",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522d7c07_d50d5de4",
+        "filename": "subcmds/info.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-12T16:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18439a38_199639fc",
       "revId": "12fe40cfc927c36ed1a5febd79244d8222513a92",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
