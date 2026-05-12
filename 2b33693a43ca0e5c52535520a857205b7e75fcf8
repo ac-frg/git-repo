@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13db6bc0_2205768f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-12T17:17:53Z",
+      "side": 1,
+      "message": "SG, let\u0027s actually just update this change (and probably add a test to cover this, like self+sibling has shallow -\u003e skip)",
+      "parentUuid": "79bc5899_9f8d3949",
+      "revId": "2b33693a43ca0e5c52535520a857205b7e75fcf8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "723407c1_c0c25e6a",
         "filename": "project.py",
         "patchSetId": 3

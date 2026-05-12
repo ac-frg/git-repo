@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422c3f9d_50d53778",
+        "filename": "project.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2645,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-12T17:17:53Z",
+      "side": 1,
+      "message": "nit: flatten with `and`",
+      "range": {
+        "startLine": 2644,
+        "startChar": 0,
+        "endLine": 2645,
+        "endChar": 60
+      },
+      "revId": "1d46aaf22083cd6826ddb96ad43895774cfe7175",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
