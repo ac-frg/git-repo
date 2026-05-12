@@ -516,6 +516,22 @@ class Command:
         )
         return result
 
+    def GetSmartSyncOverridePath(self, manifest=None) -> str:
+        """Return the path where smart sync writes its override manifest."""
+        if manifest is None:
+            manifest = self.manifest
+        return os.path.join(
+            manifest.manifestProject.worktree, "smart_sync_override.xml"
+        )
+
+    def TryOverrideManifestWithSmartSync(self, manifest=None) -> None:
+        """Override manifest with smart_sync_override.xml if it exists."""
+        if manifest is None:
+            manifest = self.manifest
+        smart_sync_manifest_path = self.GetSmartSyncOverridePath(manifest)
+        if os.path.isfile(smart_sync_manifest_path):
+            manifest.Override(smart_sync_manifest_path)
+
     def ManifestList(self, opt):
         """Yields all of the manifests to traverse.
 
