@@ -2050,9 +2050,7 @@ later is required to fix a server side protocol bug.
             manifest.Override(opt.manifest_name)
 
         manifest_name = opt.manifest_name
-        smart_sync_manifest_path = os.path.join(
-            manifest.manifestProject.worktree, "smart_sync_override.xml"
-        )
+        smart_sync_manifest_path = self.GetSmartSyncOverridePath(manifest)
 
         if opt.clone_bundle is None:
             opt.clone_bundle = manifest.CloneBundle
