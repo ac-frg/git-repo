@@ -6,6 +6,7 @@ __pycache__
 /dist
 .repopickle_*
 /repoc
+/.cipd_bin
 /.tox
 /.venv
 

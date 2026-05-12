@@ -66,7 +66,11 @@ def main(argv: List[str]) -> int:
     parser = get_parser()
     opts = parser.parse_args(argv)
 
-    if not shutil.which("help2man"):
+    help2man = ["help2man"]
+    cipd_help2man = TOPDIR / ".cipd_bin/bin/help2man"
+    if cipd_help2man.exists():
+        help2man = ["perl", cipd_help2man]
+    elif not shutil.which("help2man"):
         sys.exit("Please install help2man to continue.")
 
     # Let repo know we're generating man pages so it can avoid some dynamic
@@ -81,7 +85,7 @@ def main(argv: List[str]) -> int:
     version = RepoSourceVersion()
     cmdlist = [
         [
-            "help2man",
+            *help2man,
             "-N",
             "-n",
             f"repo {cmd} - manual page for repo {cmd}",
@@ -100,7 +104,7 @@ def main(argv: List[str]) -> int:
     ]
     cmdlist.append(
         [
-            "help2man",
+            *help2man,
             "-N",
             "-n",
             "repository management tool built on top of git",
