@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2be14c5_26828e3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-12T21:09:33Z",
+      "side": 1,
+      "message": "BTW I plan on releasing a new version soon. If you\u0027d like to have the next release include this change (and your other one), you should submit by voting Commit-Queue+2",
+      "revId": "56b599392052c89481b7ab044503d4ea6d413a5d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
