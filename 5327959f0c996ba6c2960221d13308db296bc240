@@ -70,6 +70,24 @@
       "parentUuid": "69e1d400_9d4983a1",
       "revId": "5327959f0c996ba6c2960221d13308db296bc240",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09fb6841_3e7ac5b8",
+        "filename": "man/repo-manifest.1",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-12T17:19:01Z",
+      "side": 1,
+      "message": "yeah, now my local builds are breaking because this shouldn\u0027t be here",
+      "parentUuid": "5e66efc8_4236da41",
+      "revId": "5327959f0c996ba6c2960221d13308db296bc240",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
