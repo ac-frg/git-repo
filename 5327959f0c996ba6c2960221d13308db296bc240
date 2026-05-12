@@ -52,6 +52,24 @@
       "parentUuid": "0d99fc46_f4c6df81",
       "revId": "5327959f0c996ba6c2960221d13308db296bc240",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e66efc8_4236da41",
+        "filename": "man/repo-manifest.1",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-12T17:17:16Z",
+      "side": 1,
+      "message": "to be clear, the CI doesn\u0027t check man pages atm because the bots don\u0027t have the tools",
+      "parentUuid": "69e1d400_9d4983a1",
+      "revId": "5327959f0c996ba6c2960221d13308db296bc240",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
