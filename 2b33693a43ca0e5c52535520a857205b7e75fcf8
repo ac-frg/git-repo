@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55dcd7fb_b0935fb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-12T01:14:56Z",
+      "side": 1,
+      "message": "hmm do you mean essentially doing `self._SharingProjectHasShallow() and not os.path.exists(os.path.join(self.gitdir, \"shallow\"))` instead of just _SharingProjectHasShallow ? I believe that should work too without always having to fetch",
+      "parentUuid": "7f348830_ccfe1ff8",
+      "revId": "2b33693a43ca0e5c52535520a857205b7e75fcf8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "723407c1_c0c25e6a",
         "filename": "project.py",
         "patchSetId": 3
