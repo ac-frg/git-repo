@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79bc5899_9f8d3949",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4346027
+      },
+      "writtenOn": "2026-05-12T07:12:33Z",
+      "side": 1,
+      "message": "Yeah, exactly. I experimented a bit with the tests and this condition in my local workspace. I can upload this addition as a separate CL if you think it makes sense.",
+      "parentUuid": "55dcd7fb_b0935fb7",
+      "revId": "2b33693a43ca0e5c52535520a857205b7e75fcf8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "723407c1_c0c25e6a",
         "filename": "project.py",
         "patchSetId": 3
