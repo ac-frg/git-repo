@@ -16,6 +16,24 @@
       "message": "hrm, my local run isn\u0027t updating this man page ... it says it\u0027s already up-to-date",
       "revId": "5327959f0c996ba6c2960221d13308db296bc240",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d99fc46_f4c6df81",
+        "filename": "man/repo-manifest.1",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081020
+      },
+      "writtenOn": "2026-05-12T16:58:59Z",
+      "side": 1,
+      "message": "hmm, I\u0027ve just tried git rebasing onto main and that didn\u0027t change it ... weird. I\u0027m going to trust the merge process and try submitting.",
+      "parentUuid": "6aa46c37_b35082b1",
+      "revId": "5327959f0c996ba6c2960221d13308db296bc240",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
