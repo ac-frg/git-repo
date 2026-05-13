@@ -16,6 +16,24 @@
       "message": "BTW I plan on releasing a new version soon. If you\u0027d like to have the next release include this change (and your other one), you should submit by voting Commit-Queue+2",
       "revId": "56b599392052c89481b7ab044503d4ea6d413a5d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85d7b9a7_24831459",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-05-13T06:59:50Z",
+      "side": 1,
+      "message": "Thanks for flagging! Forgot that I needed that 😊\n\nIf there is any chance of getting this one into the new release as well, that would be much appreciated: https://gerrit-review.googlesource.com/c/git-repo/+/581062?usp\u003ddashboard",
+      "parentUuid": "f2be14c5_26828e3c",
+      "revId": "56b599392052c89481b7ab044503d4ea6d413a5d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
