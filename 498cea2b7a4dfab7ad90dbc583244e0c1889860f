@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a399cb4b_86137bbb",
+        "filename": "command.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-13T04:28:36Z",
+      "side": 1,
+      "message": "this name/path is duplicated with the sync subcommand.  can we unify that too ?\n\nthe sync logic is also slightly diff wrt outer-vs-inner manifests.",
+      "revId": "498cea2b7a4dfab7ad90dbc583244e0c1889860f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
