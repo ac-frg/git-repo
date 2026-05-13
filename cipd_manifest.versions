@@ -2,17 +2,17 @@
 # Do not modify manually. All changes will be overwritten.
 
 infra/3pp/tools/help2man/linux-amd64
-	version:3@1.47.8.chromium.1
-	Ftn7OHsJBffbIuK3KERGGF21oKqMmnV00B6ZKmjxKe4C
+	version:3@1.49.3
+	82ySLC4--mvjnmuwj_j_2odHLj5zFaNFpWvfCyMunY0C
 
 infra/3pp/tools/help2man/linux-arm64
-	version:3@1.47.8.chromium.1
-	_7lsBiY7fUeLXx1UJc_LEE8H9DG7CGGM9M2gjyqB9T4C
+	version:3@1.49.3
+	szfWfjI4RyCT6gIB48CeUOGG6_Un4wfbIb0Vvs5M9MUC
 
 infra/3pp/tools/help2man/mac-amd64
-	version:3@1.47.8.chromium.1
-	E7Dldyd8BvjuW2ZuZy3ILNt7KNN2Cs_F_5dkwRfaL8IC
+	version:3@1.49.3
+	t7iyQx5TnGbuJfj6zMTvjPdBl-Cb_w5papUh80NI2S8C
 
 infra/3pp/tools/help2man/mac-arm64
-	version:3@1.47.8.chromium.1
-	K5qjjtmIDBnibI_76qoEEgsbwzkQUGrZxbBsaUgOeisC
+	version:3@1.49.3
+	t5eD-eLKRpnSifZdbi072U8bnPfGye1pIMmQ07nxJ7kC
