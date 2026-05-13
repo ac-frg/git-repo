@@ -68,7 +68,7 @@ def main(argv: List[str]) -> int:
     help2man = ["help2man"]
     cipd_help2man = TOPDIR / ".cipd_bin/bin/help2man"
     if cipd_help2man.exists():
-        help2man = ["perl", cipd_help2man]
+        help2man = [cipd_help2man]
     elif not shutil.which("help2man"):
         sys.exit("Please install help2man to continue.")
 
