@@ -16,6 +16,24 @@
       "message": "Not seeing any unit tests anywhere for `command.py`. Should I add a `test_command.py` with a test, add a test elsewhere, or leave as-is?",
       "revId": "5dcc98ac5b1797d3faf0102f4bea7959f5140b27",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c794cd_e3f61e14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-13T18:23:27Z",
+      "side": 1,
+      "message": "yeah, let\u0027s add `tests/test_command.py` using pytest (like `test_error.py`)",
+      "parentUuid": "22d12220_23224831",
+      "revId": "5dcc98ac5b1797d3faf0102f4bea7959f5140b27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
