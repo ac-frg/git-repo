@@ -16,6 +16,24 @@
       "message": "this name/path is duplicated with the sync subcommand.  can we unify that too ?\n\nthe sync logic is also slightly diff wrt outer-vs-inner manifests.",
       "revId": "498cea2b7a4dfab7ad90dbc583244e0c1889860f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "003f411d_e980e8cd",
+        "filename": "command.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-14T18:59:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a399cb4b_86137bbb",
+      "revId": "498cea2b7a4dfab7ad90dbc583244e0c1889860f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
