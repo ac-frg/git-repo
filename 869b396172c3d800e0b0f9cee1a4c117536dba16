@@ -166,6 +166,30 @@
       },
       "revId": "869b396172c3d800e0b0f9cee1a4c117536dba16",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "086b3708_4b3517ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-05-14T13:44:41Z",
+      "side": 1,
+      "message": "everyone does.  please review the documentation.\nhttps://gerrit.googlesource.com/git-repo/+/HEAD/CONTRIBUTING.md#sending-your-patches",
+      "parentUuid": "1bef534e_328202b6",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "869b396172c3d800e0b0f9cee1a4c117536dba16",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
