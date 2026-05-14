@@ -16,6 +16,24 @@
       "message": "should `repo info` also check it ?",
       "revId": "3d06d4332ae92c876a80b20903797c31326b6207",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67a9764_01141e8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-05-14T19:00:12Z",
+      "side": 1,
+      "message": "done, will also send some followups for other commands like manifest/rebase/etc",
+      "parentUuid": "1da46c35_c004c0d2",
+      "revId": "3d06d4332ae92c876a80b20903797c31326b6207",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
