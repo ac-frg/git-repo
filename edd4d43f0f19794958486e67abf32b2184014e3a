@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a6a77a0_c03ce9ad",
+        "filename": "color.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-02T14:43:22Z",
+      "side": 1,
+      "message": "`object()` does not provide good diagnostics in case of failures\n\n```\n\u003e\u003e\u003e _CHECK_CONSOLE \u003d object()\n\u003e\u003e\u003e setting \u003d _CHECK_CONSOLE\n\u003e\u003e\u003e print(setting + \"\")\nTraceback (most recent call last):\n  File \"\u003cpython-input-3\u003e\", line 1, in \u003cmodule\u003e\n    print(setting + \"\")\n          ~~~~~~~~^~~~\nTypeError: unsupported operand type(s) for +: \u0027object\u0027 and \u0027str\u0027\n```\n\n```\n\u003e\u003e\u003e class CheckConsole:\n...     \"blah\"\n...     \n\u003e\u003e\u003e setting \u003d CheckConsole()\n\u003e\u003e\u003e print(setting + \"\")\nTraceback (most recent call last):\n  File \"\u003cpython-input-8\u003e\", line 1, in \u003cmodule\u003e\n    print(setting + \"\")\n          ~~~~~~~~^~~~\nTypeError: unsupported operand type(s) for +: \u0027CheckConsole\u0027 and \u0027str\u0027\n```\n\nit\u0027s also not really faster or fewer loc\n```\n# Placholder value that indicates we need to check if the user is in an\n# interactive terminal session to determine if we turn on color or not.\n_CHECK_CONSOLE \u003d object()\n```\n\n```\nclass _CheckConsole:\n   \"\"\"Indicate we need to check if using an interactive terminal session.\"\"\"\n```\n\npythonic/stylistically, creating bare objects is not good.",
+      "parentUuid": "ac20530f_277a2831",
+      "revId": "edd4d43f0f19794958486e67abf32b2184014e3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f1641f0_7f45e76d",
         "filename": "color.py",
         "patchSetId": 5
