@@ -16,7 +16,9 @@ import sys
 
 from color import Coloring
 from command import Command
+from error import GitError
 from git_command import GitCommand
+from project import Project
 from repo_logging import RepoLogger
 
 
@@ -28,6 +30,17 @@ class RebaseColoring(Coloring):
         Coloring.__init__(self, config, "rebase")
         self.project = self.printer("project", attr="bold")
         self.fail = self.printer("fail", fg="red")
+
+
+def _ResolveOntoManifest(project: Project) -> str:
+    """Resolve project's revisionExpr to a local tracking branch.
+
+    Falls back to the raw revisionExpr if ToLocal fails or raises GitError.
+    """
+    try:
+        return project.GetRemote().ToLocal(project.revisionExpr)
+    except GitError:
+        return project.revisionExpr
 
 
 class Rebase(Command):
@@ -162,7 +175,7 @@ branch but need to incorporate new upstream changes "underneath" them.
             args = common_args[:]
             if opt.onto_manifest:
                 args.append("--onto")
-                args.append(project.revisionExpr)
+                args.append(_ResolveOntoManifest(project))
 
             args.append(upbranch.LocalMerge)
 
