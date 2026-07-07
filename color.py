@@ -84,9 +84,14 @@ def _Color(fg=None, bg=None, attr=None):
 
 DEFAULT = None
 
+
+class _CheckConsoleSentinel:
+    """Sentinel for checking console coloring."""
+
+
 # Placholder value that indicates we need to check if the user is in an
 # interactive terminal session to determine if we turn on color or not.
-_CHECK_CONSOLE = object()
+_CHECK_CONSOLE = _CheckConsoleSentinel()
 
 # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colorui
 _CONFIG_TO_COLOR_SETTING = {
