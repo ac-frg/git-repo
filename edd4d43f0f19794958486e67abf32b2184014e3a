@@ -90,6 +90,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cee246b_74b4e4df",
+        "filename": "color.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 4950251
+      },
+      "writtenOn": "2026-07-07T21:35:54Z",
+      "side": 1,
+      "message": "Addressed in https://gerrit-review.git.corp.google.com/c/git-repo/+/605021",
+      "parentUuid": "0a6a77a0_c03ce9ad",
+      "revId": "edd4d43f0f19794958486e67abf32b2184014e3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f1641f0_7f45e76d",
