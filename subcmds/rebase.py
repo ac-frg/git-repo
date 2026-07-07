@@ -16,6 +16,7 @@ import sys
 
 from color import Coloring
 from command import Command
+from error import GitError
 from git_command import GitCommand
 from repo_logging import RepoLogger
 
@@ -162,7 +163,12 @@ branch but need to incorporate new upstream changes "underneath" them.
             args = common_args[:]
             if opt.onto_manifest:
                 args.append("--onto")
-                args.append(project.revisionExpr)
+                try:
+                    args.append(
+                        project.GetRemote().ToLocal(project.revisionExpr)
+                    )
+                except GitError:
+                    args.append(project.revisionExpr)
 
             args.append(upbranch.LocalMerge)
 
