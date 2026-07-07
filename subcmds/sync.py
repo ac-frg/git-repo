@@ -600,7 +600,14 @@ later is required to fix a server side protocol bug.
             "--optimized-fetch",
             action="store_true",
             help="only fetch projects fixed to sha1 if revision does not exist "
-            "locally",
+            "locally (default when using superproject)",
+        )
+        p.add_option(
+            "--no-optimized-fetch",
+            dest="optimized_fetch",
+            action="store_false",
+            help="disable optimized fetch (default when not using "
+            "superproject)",
         )
         p.add_option(
             "--retry-fetches",
@@ -2163,6 +2170,14 @@ later is required to fix a server side protocol bug.
                     name,
                 )
                 warned = True
+
+        # Default to optimized fetch if any manifest is using a superproject.
+        if opt.optimized_fetch is None:
+            opt.optimized_fetch = any(
+                git_superproject.UseSuperproject(opt.use_superproject, m)
+                for m in self.ManifestList(opt)
+                if m is not None
+            )
 
     def Execute(self, opt, args):
         errors = []
