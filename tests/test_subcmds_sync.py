@@ -18,6 +18,7 @@ import os
 import shutil
 import tempfile
 import time
+from typing import List
 import unittest
 from unittest import mock
 
@@ -54,6 +55,46 @@ def test_get_current_branch_only(use_superproject, cli_args, result):
         "git_superproject.UseSuperproject", return_value=use_superproject
     ):
         assert cmd._GetCurrentBranchOnly(opts, cmd.manifest) == result
+
+
+@pytest.mark.parametrize(
+    "argv, use_superproject_mock, expected_optimized_fetch",
+    [
+        (["--optimized-fetch"], False, True),
+        (["--optimized-fetch"], True, True),
+        (["--no-optimized-fetch"], False, False),
+        (["--no-optimized-fetch"], True, False),
+        ([], False, False),
+        ([], True, True),
+    ],
+)
+def test_cli_optimized_fetch(
+    argv: List[str],
+    use_superproject_mock: bool,
+    expected_optimized_fetch: bool,
+) -> None:
+    """Tests optimized fetch default option behavior."""
+    cmd = sync.Sync()
+    opts, args = cmd.OptionParser.parse_args(argv)
+    cmd.ValidateOptions(opts, args)
+
+    manifest = mock.MagicMock()
+    manifest.all_children = []
+    cmd.manifest = manifest
+    cmd.outer_manifest = manifest
+
+    mp = mock.MagicMock()
+    mp.manifest.default.sync_j = None
+    mp.manifest.default.sync_j_max = None
+
+    with mock.patch(
+        "git_superproject.UseSuperproject",
+        return_value=use_superproject_mock,
+    ):
+        with mock.patch.object(sync, "_rlimit_nofile", return_value=(256, 256)):
+            with mock.patch.object(os, "cpu_count", return_value=1):
+                cmd._ValidateOptionsWithManifest(opts, mp)
+                assert opts.optimized_fetch == expected_optimized_fetch
 
 
 # Used to patch os.cpu_count() for reliable results.
@@ -101,6 +142,8 @@ def test_cli_jobs(argv, jobs_manifest, jobs, jobs_net, jobs_check):
     mp.manifest.default.sync_j_max = None
 
     cmd = sync.Sync()
+    cmd.manifest = mp.manifest
+    mp.manifest.all_children = []
     opts, args = cmd.OptionParser.parse_args(argv)
     cmd.ValidateOptions(opts, args)
 
@@ -129,6 +172,8 @@ def test_cli_jobs_sync_j_max(
     mp.manifest.default.sync_j_max = jobs_manifest_max
 
     cmd = sync.Sync()
+    cmd.manifest = mp.manifest
+    mp.manifest.all_children = []
     opts, args = cmd.OptionParser.parse_args(argv)
     cmd.ValidateOptions(opts, args)
 
