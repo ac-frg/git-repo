@@ -68,6 +68,7 @@ class RepoHook:
         allow_all_hooks=False,
         ignore_hooks=False,
         abort_if_user_denies=False,
+        yes=False,
     ):
         """RepoHook constructor.
 
@@ -89,6 +90,8 @@ class RepoHook:
             ignore_hooks: If True, then 'Do not abort action if hooks fail'.
             abort_if_user_denies: If True, we'll abort running the hook if the
                 user doesn't allow us to run the hook.
+            yes: If True, then 'Yes' is assumed for any prompts (corresponds to
+                the -y upload flag).
         """
         self._hook_type = hook_type
         self._hooks_project = hooks_project
@@ -99,6 +102,7 @@ class RepoHook:
         self._allow_all_hooks = allow_all_hooks
         self._ignore_hooks = ignore_hooks
         self._abort_if_user_denies = abort_if_user_denies
+        self._yes = yes
 
         # Store the full path to the script for convenience.
         self._script_fullpath = None
@@ -355,6 +359,9 @@ class RepoHook:
         orig_syspath = sys.path
 
         try:
+            # Set REPO_UPLOAD_YES so hooks can know if -y was passed.
+            os.environ["REPO_UPLOAD_YES"] = "1" if self._yes else "0"
+
             # Always run hooks with CWD as topdir.
             os.chdir(self._repo_topdir)
 
@@ -391,6 +398,7 @@ class RepoHook:
             # Restore sys.path and CWD.
             sys.path = orig_syspath
             os.chdir(orig_path)
+            os.environ.pop("REPO_UPLOAD_YES", None)
 
     def _CheckHook(self):
         # Bail with a nice error if we can't find the hook.
@@ -489,6 +497,7 @@ class RepoHook:
         """
         for key in ("bypass_hooks", "allow_all_hooks", "ignore_hooks"):
             kwargs.setdefault(key, getattr(opt, key))
+        kwargs.setdefault("yes", getattr(opt, "yes", False))
         kwargs.update(
             {
                 "hooks_project": manifest.repo_hooks_project,
