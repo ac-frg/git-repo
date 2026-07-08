@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1366e023_2149b044",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-08T17:39:03Z",
+      "side": 1,
+      "message": "hooks have a defined Python API.  do not (ab)use env variables like this.",
+      "revId": "e126a9eda906b7cd762f7a2023742f0917714b1c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
