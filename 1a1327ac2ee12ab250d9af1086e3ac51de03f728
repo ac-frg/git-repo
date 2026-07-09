@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b8141a_be3457e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "`hooks: pass yes flag when available`\n\nhttps://cbea.ms/git-commit/",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc6957a_d0144dd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "you aren\u0027t modifying the repo CLI.  you\u0027re passing the -y flag to hooks.",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dd2a965_25b64185",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "`Bug:` tags, not `BUG\u003d`",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d6ab3d_79d403e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "delete this noise",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77190151_d2925d11",
+        "filename": "hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "this isn\u0027t specific to upload",
+      "fixSuggestions": [
+        {
+          "fixId": "91eef6ca_f28e5620",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "hooks.py",
+              "range": {
+                "startLine": 93,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "            yes: If True, then \u0027Yes\u0027 is assumed for any prompts.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb324cb_63f2b6ae",
+        "filename": "hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "now that we have more than one, you can use .update",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3bc0c130_a2a716c4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "hooks.py",
+              "range": {
+                "startLine": 382,
+                "startChar": 0,
+                "endLine": 384,
+                "endChar": 0
+              },
+              "replacement": "            kwargs.update({\n                \"hook_should_take_kwargs\": True,\n                \"yes\": self._yes,\n            })\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f18c31c0_05112278",
+        "filename": "hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "i don\u0027t think using setdefault makes sense.  that implies the caller is using yes\u003d when calling FromSubcmd.  but nowhere do we do that.  you\u0027ve written the logic so we always pull yes implicitly out of opts.  so just do that.  move this to the .update below.",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1400ccb6_1f00ef6b",
+        "filename": "tests/test_hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-09T18:52:06Z",
+      "side": 1,
+      "message": "use `tmp_path` fixture to point to an actual dir, then you don\u0027t need to stub out so much logic.  write an actual stubhook.",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
