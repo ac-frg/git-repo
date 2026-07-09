@@ -105,3 +105,47 @@ def test_post_sync_argument_validation() -> None:
 
     finally:
         sys.stderr = old_stderr
+
+
+@pytest.mark.parametrize("yes_val", (True, False))
+def test_repo_upload_yes_arg(yes_val: bool) -> None:
+    """Test that yes is passed in kwargs during hook execution."""
+
+    class FakeProject:
+        def __init__(self):
+            self.worktree = "/some/path"
+            self.enabled_repo_hooks = ["pre-upload"]
+            self.config = None
+
+    hook = hooks.RepoHook(
+        hook_type="pre-upload",
+        hooks_project=FakeProject(),
+        repo_topdir="/topdir",
+        manifest_url="https://gerrit",
+        allow_all_hooks=True,
+        yes=yes_val,
+    )
+
+    hook._CheckHook = lambda: None
+
+    called = []
+
+    def fake_execute_via_import(data, context, **kwargs):
+        called.append(True)
+        assert kwargs.get("yes") == yes_val
+
+    hook._ExecuteHookViaImport = fake_execute_via_import
+
+    # Also mock opening the script file since we don't have a real one.
+    import builtins
+    import unittest.mock
+
+    with unittest.mock.patch.object(
+        builtins,
+        "open",
+        unittest.mock.mock_open(read_data="def main(**kwargs): pass"),
+    ), unittest.mock.patch("os.chdir"):
+        res = hook.Run(project_list=[], worktree_list=[])
+
+    assert res is True
+    assert called == [True]
