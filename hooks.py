@@ -21,7 +21,6 @@ import urllib.parse
 from error import HookError
 from git_refs import HEAD
 
-
 # The API we've documented to hook authors.  Keep in sync with repo-hooks.md.
 _API_ARGS = {
     "pre-upload": {"project_list", "worktree_list"},
@@ -68,6 +67,7 @@ class RepoHook:
         allow_all_hooks=False,
         ignore_hooks=False,
         abort_if_user_denies=False,
+        yes=False,
     ):
         """RepoHook constructor.
 
@@ -89,6 +89,7 @@ class RepoHook:
             ignore_hooks: If True, then 'Do not abort action if hooks fail'.
             abort_if_user_denies: If True, we'll abort running the hook if the
                 user doesn't allow us to run the hook.
+            yes: If True, then 'Yes' is assumed for any prompts.
         """
         self._hook_type = hook_type
         self._hooks_project = hooks_project
@@ -99,6 +100,7 @@ class RepoHook:
         self._allow_all_hooks = allow_all_hooks
         self._ignore_hooks = ignore_hooks
         self._abort_if_user_denies = abort_if_user_denies
+        self._yes = yes
 
         # Store the full path to the script for convenience.
         self._script_fullpath = None
@@ -375,7 +377,10 @@ class RepoHook:
             #
             # This allows us to later expand the API without breaking old hooks.
             kwargs = kwargs.copy()
-            kwargs["hook_should_take_kwargs"] = True
+            kwargs.update(
+                hook_should_take_kwargs=True,
+                yes=self._yes,
+            )
 
             # See what version of python the hook has been written against.
             data = open(self._script_fullpath).read()
@@ -497,6 +502,7 @@ class RepoHook:
                     "origin"
                 ).url,
                 "bug_url": manifest.contactinfo.bugurl,
+                "yes": getattr(opt, "yes", False),
             }
         )
         return cls(*args, **kwargs)
