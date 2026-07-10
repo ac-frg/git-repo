@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b9932b_65227c8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e0b8141a_be3457e3",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbc6957a_d0144dd5",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-07-09T18:52:06Z",
       "side": 1,
       "message": "you aren\u0027t modifying the repo CLI.  you\u0027re passing the -y flag to hooks.",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "220d5041_fd9973b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Updated description.",
+      "parentUuid": "bbc6957a_d0144dd5",
       "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f94c61c_c046d6b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "5dd2a965_25b64185",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4d6ab3d_79d403e0",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-07-09T18:52:06Z",
       "side": 1,
       "message": "delete this noise",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b5e0e9_f42626bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "c4d6ab3d_79d403e0",
       "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -100,6 +172,24 @@
           ]
         }
       ],
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c113f5_57d34fdd",
+        "filename": "hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "77190151_d2925d11",
       "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -145,6 +235,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e47c71d6_4bd4411d",
+        "filename": "hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "dcb324cb_63f2b6ae",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 37
+      },
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f18c31c0_05112278",
@@ -162,6 +276,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff7c46c_f9a58b69",
+        "filename": "hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "f18c31c0_05112278",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1400ccb6_1f00ef6b",
@@ -175,6 +307,24 @@
       "writtenOn": "2026-07-09T18:52:06Z",
       "side": 1,
       "message": "use `tmp_path` fixture to point to an actual dir, then you don\u0027t need to stub out so much logic.  write an actual stubhook.",
+      "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7cecf75_5de525c7",
+        "filename": "tests/test_hooks.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1095178
+      },
+      "writtenOn": "2026-07-10T15:32:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "1400ccb6_1f00ef6b",
       "revId": "1a1327ac2ee12ab250d9af1086e3ac51de03f728",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
