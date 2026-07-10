@@ -119,7 +119,7 @@ This hook runs when people run `repo upload`.
 The `pre-upload.py` file should be defined like:
 
 ```py
-def main(project_list, worktree_list=None, **kwargs):
+def main(project_list, worktree_list=None, yes=False, **kwargs):
     """Main function invoked directly by repo.
 
     We must use the name "main" as that is what repo requires.
@@ -130,9 +130,14 @@ def main(project_list, worktree_list=None, **kwargs):
           project_list, so that each entry in project_list matches with a
           directory in worktree_list.  If None, we will attempt to calculate
           the directories automatically.
+      yes: Whether to answer yes to all safe prompts (passed when `repo upload --yes`
+          is used).
       kwargs: Leave this here for forward-compatibility.
     """
 ```
+
+During execution, the environment variable `REPO_UPLOAD_YES` will be set to `"1"` if the user passed `--yes` to `repo upload`, and `"0"` otherwise.
+
 
 ### post-sync
 
