@@ -31,6 +31,23 @@ from subcmds import sync
 
 
 @pytest.mark.parametrize(
+    "cli_args, expected",
+    [
+        ([], None),
+        (["--fetch-submodules"], True),
+        (["--no-fetch-submodules"], False),
+    ],
+)
+def test_fetch_submodules_option(cli_args, expected):
+    """The fetch-submodules flags preserve an unset manifest-driven state."""
+    cmd = sync.Sync()
+
+    opts, _ = cmd.OptionParser.parse_args(cli_args)
+
+    assert opts.fetch_submodules is expected
+
+
+@pytest.mark.parametrize(
     "use_superproject, cli_args, result",
     [
         (True, ["--current-branch"], True),

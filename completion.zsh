@@ -323,6 +323,7 @@ _repo() {
         '(-u --manifest-server-username)'{-u,--manifest-server-username=}'[Username for manifest server]:username:' \
         '(-p --manifest-server-password)'{-p,--manifest-server-password=}'[Password for manifest server]:password:' \
         '--fetch-submodules[Fetch submodules]' \
+        '--no-fetch-submodules[Do not fetch submodules]' \
         '--use-superproject[Use superproject]' \
         '--no-use-superproject[Do not use superproject]' \
         '--tags[Sync tags]' \

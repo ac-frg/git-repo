@@ -14,6 +14,8 @@
 
 """Unittests for the command.py module."""
 
+import pytest
+
 from command import Command
 
 
@@ -86,3 +88,32 @@ def test_get_projects_keeps_derived_subprojects_for_repeated_repo():
     projects = cmd.GetProjects([])
 
     assert set(projects) == {project_a, project_b, submodule_a, submodule_b}
+
+
+@pytest.mark.parametrize(
+    "submodules_ok, sync_s, includes_submodule",
+    [
+        (None, False, False),
+        (None, True, True),
+        (True, False, True),
+        (True, True, True),
+        (False, False, False),
+        (False, True, False),
+    ],
+)
+def test_get_projects_submodule_override(
+    submodules_ok, sync_s, includes_submodule
+):
+    """The CLI override takes precedence over a project's sync-s setting."""
+    submodule = FakeProject("submodule", "project/submodule")
+    project = FakeProject(
+        "project",
+        "project",
+        derived_subprojects=[submodule],
+        sync_s=sync_s,
+    )
+    cmd = Command(manifest=FakeManifest([project]))
+
+    projects = cmd.GetProjects([], submodules_ok=submodules_ok)
+
+    assert (submodule in projects) is includes_submodule
