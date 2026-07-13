@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbad1fa0_2600c494",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T05:40:07Z",
+      "side": 1,
+      "message": "update docs/repo-hooks.md too",
+      "revId": "1f9a1c35e0ef731871209f2bb3ea5fdfac94dd34",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c8916af_4a4b5cbb",
+        "filename": "hooks.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-13T05:40:07Z",
+      "side": 1,
+      "message": "```suggestion\n            kwargs \u003d kwargs.copy().update(\n```",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 26
+      },
+      "revId": "1f9a1c35e0ef731871209f2bb3ea5fdfac94dd34",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
