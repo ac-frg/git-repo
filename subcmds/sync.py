@@ -379,7 +379,8 @@ may be necessary if there are problems with the local Python
 HTTP client or proxy configuration, but the Git binary works.
 
 The --fetch-submodules option enables fetching Git submodules
-of a project from server.
+of all projects from the server. The --no-fetch-submodules option disables
+fetching Git submodules, even when a project has sync-s="true" in the manifest.
 
 The -c/--current-branch option can be used to only fetch objects that
 are on the branch specified by a project's revision.
@@ -572,6 +573,12 @@ later is required to fix a server side protocol bug.
             "--fetch-submodules",
             action="store_true",
             help="fetch submodules from server",
+        )
+        p.add_option(
+            "--no-fetch-submodules",
+            dest="fetch_submodules",
+            action="store_false",
+            help="don't fetch submodules from server",
         )
         p.add_option(
             "--use-superproject",
