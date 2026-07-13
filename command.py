@@ -17,12 +17,17 @@ import multiprocessing
 import optparse
 import os
 import re
+from typing import TYPE_CHECKING
 
 from error import InvalidProjectGroupsError
 from error import NoSuchProjectError
 from error import RepoExitError
 from event_log import EventLog
 import progress
+
+
+if TYPE_CHECKING:
+    from project import Project
 
 
 # Are we generating man-pages?
@@ -375,7 +380,7 @@ class Command:
         manifest=None,
         groups="",
         missing_ok=False,
-        submodules_ok=False,
+        submodules_ok=None,
         all_manifests=False,
     ):
         """A list of projects that match the arguments.
@@ -385,7 +390,9 @@ class Command:
             manifest: an XmlManifest, the manifest to use, or None for default.
             groups: a string, the manifest groups in use.
             missing_ok: a boolean, whether to allow missing projects.
-            submodules_ok: a boolean, whether to allow submodules.
+            submodules_ok: whether to allow submodules. True allows them for
+                all projects, False disallows them for all projects, and None
+                defers to each project's sync-s setting.
             all_manifests: a boolean, if True then all manifests and
                 submanifests are used. If False, then only the local
                 (sub)manifest is used.
@@ -403,6 +410,11 @@ class Command:
             all_projects_list = manifest.projects
         result = []
 
+        def should_include_submodules(project: "Project") -> bool:
+            if submodules_ok is None:
+                return project.sync_s
+            return submodules_ok
+
         if not groups:
             groups = manifest.GetManifestGroupsStr()
         groups = [x for x in re.split(r"[,\s]+", groups) if x]
@@ -410,7 +422,7 @@ class Command:
         if not args:
             derived_projects = {}
             for project in all_projects_list:
-                if submodules_ok or project.sync_s:
+                if should_include_submodules(project):
                     derived_projects.update(
                         (p.RelPath(local=False), p)
                         for p in project.GetDerivedSubprojects()
@@ -452,7 +464,7 @@ class Command:
                     if (
                         project
                         and not project.Derived
-                        and (submodules_ok or project.sync_s)
+                        and should_include_submodules(project)
                     ):
                         search_again = False
                         for subproject in project.GetDerivedSubprojects():
