@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4c7b055_73a4f853",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-07-14T15:48:52Z",
+      "side": 1,
+      "message": "I think it\u0027s quite misleading that the original flag is named `--fetch-submodules` when it affects the entire sync operation (fetch, checkout, and related bookkeeping). `--sync-submodules` would have been a better name?\n\nI don\u0027t know how breaking changes are handled in this repo, but could an option be to add deprecation notices for `--fetch-submodules` and `--no-fetch-submodules` and introduce aliases `--sync-submodules` and `--no-sync-submodules`?\n\nThoughts? @gavinmak@google.com\n\nHappy to make a contribution with that if you are interested!",
+      "revId": "3c0cbb7fef061a0602617f610fa35ea1733bfd74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
