@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb4e4d20_d609e86a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-07-14T17:43:03Z",
+      "side": 1,
+      "message": "```suggestion\nsync: Add CLI flag for globally disabling submodule fetch\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "3c0cbb7fef061a0602617f610fa35ea1733bfd74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f4c7b055_73a4f853",
@@ -14,6 +37,29 @@
       "writtenOn": "2026-07-14T15:48:52Z",
       "side": 1,
       "message": "I think it\u0027s quite misleading that the original flag is named `--fetch-submodules` when it affects the entire sync operation (fetch, checkout, and related bookkeeping). `--sync-submodules` would have been a better name?\n\nI don\u0027t know how breaking changes are handled in this repo, but could an option be to add deprecation notices for `--fetch-submodules` and `--no-fetch-submodules` and introduce aliases `--sync-submodules` and `--no-sync-submodules`?\n\nThoughts? @gavinmak@google.com\n\nHappy to make a contribution with that if you are interested!",
+      "revId": "3c0cbb7fef061a0602617f610fa35ea1733bfd74",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b28e4c4_fb1f8af1",
+        "filename": "command.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1088583
+      },
+      "writtenOn": "2026-07-14T17:43:03Z",
+      "side": 1,
+      "message": "nit: make this slightly easier to read with something like\n```suggestion\n        def should_include_submodules(project: Project) -\u003e bool:\n            if submodules_ok is None:\n                return project.sync_s\n            return submodules_ok\n```",
+      "range": {
+        "startLine": 408,
+        "startChar": 12,
+        "endLine": 409,
+        "endChar": 78
+      },
       "revId": "3c0cbb7fef061a0602617f610fa35ea1733bfd74",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
