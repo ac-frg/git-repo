@@ -34,17 +34,40 @@ from subcmds import sync
     "cli_args, expected",
     [
         ([], None),
+        (["--sync-submodules"], True),
+        (["--no-sync-submodules"], False),
         (["--fetch-submodules"], True),
         (["--no-fetch-submodules"], False),
     ],
 )
-def test_fetch_submodules_option(cli_args, expected):
-    """The fetch-submodules flags preserve an unset manifest-driven state."""
+def test_sync_submodules_option(cli_args, expected):
+    """The submodule flags preserve an unset manifest-driven state."""
     cmd = sync.Sync()
 
     opts, _ = cmd.OptionParser.parse_args(cli_args)
 
-    assert opts.fetch_submodules is expected
+    assert opts.sync_submodules is expected
+
+
+@pytest.mark.parametrize(
+    "old_flag, new_flag",
+    [
+        ("--fetch-submodules", "--sync-submodules"),
+        ("--no-fetch-submodules", "--no-sync-submodules"),
+    ],
+)
+def test_sync_submodules_option_deprecation(old_flag, new_flag):
+    """The old submodule flags warn and direct users to their replacements."""
+    cmd = sync.Sync()
+
+    with mock.patch.object(sync.logger, "warning") as warning:
+        cmd.OptionParser.parse_args([old_flag])
+
+    warning.assert_called_once_with(
+        "%s is deprecated; use %s instead", old_flag, new_flag
+    )
+
+    assert old_flag not in cmd.OptionParser.format_help()
 
 
 @pytest.mark.parametrize(

@@ -378,9 +378,12 @@ resumeable bundle file on a content delivery network. This
 may be necessary if there are problems with the local Python
 HTTP client or proxy configuration, but the Git binary works.
 
-The --fetch-submodules option enables fetching Git submodules
-of all projects from the server. The --no-fetch-submodules option disables
-fetching Git submodules, even when a project has sync-s="true" in the manifest.
+The --sync-submodules option enables syncing Git submodules of all projects
+from the server. The --no-sync-submodules option disables syncing Git
+submodules, even when a project has sync-s="true" in the manifest.
+
+The --fetch-submodules and --no-fetch-submodules options are deprecated aliases
+for --sync-submodules and --no-sync-submodules, respectively.
 
 The -c/--current-branch option can be used to only fetch objects that
 are on the branch specified by a project's revision.
@@ -427,6 +430,13 @@ later is required to fix a server side protocol bug.
     PARALLEL_JOBS = 0
 
     _JOBS_WARN_THRESHOLD = 100
+
+    @staticmethod
+    def _deprecated_submodules_option(option, opt_str, _value, parser):
+        enabled = opt_str == "--fetch-submodules"
+        replacement = "--sync-submodules" if enabled else "--no-sync-submodules"
+        logger.warning("%s is deprecated; use %s instead", opt_str, replacement)
+        setattr(parser.values, option.dest, enabled)
 
     def _Options(self, p, show_smart=True):
         p.add_option(
@@ -570,15 +580,29 @@ later is required to fix a server side protocol bug.
             help="password to authenticate with the manifest server",
         )
         p.add_option(
-            "--fetch-submodules",
+            "--sync-submodules",
             action="store_true",
-            help="fetch submodules from server",
+            help="sync submodules from server",
+        )
+        p.add_option(
+            "--no-sync-submodules",
+            dest="sync_submodules",
+            action="store_false",
+            help="don't sync submodules from server",
+        )
+        p.add_option(
+            "--fetch-submodules",
+            dest="sync_submodules",
+            action="callback",
+            callback=self._deprecated_submodules_option,
+            help=optparse.SUPPRESS_HELP,
         )
         p.add_option(
             "--no-fetch-submodules",
-            dest="fetch_submodules",
-            action="store_false",
-            help="don't fetch submodules from server",
+            dest="sync_submodules",
+            action="callback",
+            callback=self._deprecated_submodules_option,
+            help=optparse.SUPPRESS_HELP,
         )
         p.add_option(
             "--use-superproject",
@@ -749,7 +773,7 @@ later is required to fix a server side protocol bug.
         all_projects = self.GetProjects(
             args,
             missing_ok=True,
-            submodules_ok=opt.fetch_submodules,
+            submodules_ok=opt.sync_submodules,
             manifest=manifest,
             all_manifests=not opt.this_manifest_only,
         )
@@ -1078,7 +1102,7 @@ later is required to fix a server side protocol bug.
                 all_projects = self.GetProjects(
                     args,
                     missing_ok=True,
-                    submodules_ok=opt.fetch_submodules,
+                    submodules_ok=opt.sync_submodules,
                     manifest=manifest,
                     all_manifests=not opt.this_manifest_only,
                 )
@@ -2325,7 +2349,7 @@ later is required to fix a server side protocol bug.
         all_projects = self.GetProjects(
             args,
             missing_ok=True,
-            submodules_ok=opt.fetch_submodules,
+            submodules_ok=opt.sync_submodules,
             manifest=manifest,
             all_manifests=not opt.this_manifest_only,
         )
@@ -2988,7 +3012,7 @@ later is required to fix a server side protocol bug.
                             project_list = self.GetProjects(
                                 args,
                                 missing_ok=True,
-                                submodules_ok=opt.fetch_submodules,
+                                submodules_ok=opt.sync_submodules,
                                 manifest=manifest,
                                 all_manifests=not opt.this_manifest_only,
                             )
