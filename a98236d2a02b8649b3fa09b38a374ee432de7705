@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f214539e_f73032ba",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-07-16T15:06:36Z",
+      "side": 1,
+      "message": "Good point, fixed!",
+      "parentUuid": "d05a273e_c1eb225e",
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6fcb1fd_8cb8ba67",
         "filename": "subcmds/sync.py",
         "patchSetId": 1
@@ -72,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff7b86cf_f9cf9a06",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-07-16T15:06:36Z",
+      "side": 1,
+      "message": "Fair - replaced those as well!",
+      "parentUuid": "c6fcb1fd_8cb8ba67",
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b97ca7d_2187aba1",
         "filename": "subcmds/sync.py",
         "patchSetId": 1
@@ -83,6 +119,24 @@
       "writtenOn": "2026-07-16T14:53:26Z",
       "side": 1,
       "message": "this is what `help\u003doptparse.SUPPRESS_HELP` is for",
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e651b4d_12478ffd",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 4818947
+      },
+      "writtenOn": "2026-07-16T15:06:36Z",
+      "side": 1,
+      "message": "Nice, replaced with that",
+      "parentUuid": "0b97ca7d_2187aba1",
       "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
