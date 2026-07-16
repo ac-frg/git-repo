@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f20f8fa_6f8df7b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-16T14:53:26Z",
+      "side": 1,
+      "message": "i\u0027ve given no thought to the actual proposal.  we aim for names to be harmonized with git when possible.",
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d05a273e_c1eb225e",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-16T14:53:26Z",
+      "side": 1,
+      "message": "logger.warning already prefixes things with \"warning\", so this is warning warning",
+      "fixSuggestions": [
+        {
+          "fixId": "563aaf60_4839715b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "subcmds/sync.py",
+              "range": {
+                "startLine": 439,
+                "startChar": 0,
+                "endLine": 440,
+                "endChar": 0
+              },
+              "replacement": "            \"%s is deprecated; use %s instead\", opt_str, replacement\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6fcb1fd_8cb8ba67",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-16T14:53:26Z",
+      "side": 1,
+      "message": "the dest\u003d (i.e. code variables) should stay in sync with the flag names",
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b97ca7d_2187aba1",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-16T14:53:26Z",
+      "side": 1,
+      "message": "this is what `help\u003doptparse.SUPPRESS_HELP` is for",
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
