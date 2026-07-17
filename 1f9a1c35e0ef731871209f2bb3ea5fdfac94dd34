@@ -153,6 +153,30 @@
       },
       "revId": "1f9a1c35e0ef731871209f2bb3ea5fdfac94dd34",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71bf36d9_d0f5c5f4",
+        "filename": "hooks.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-17T18:50:10Z",
+      "side": 1,
+      "message": "i forgot about the chaining halting.  been writing too much JS.\n\ni think the `**kwargs` unpacking operator is the pythonic way.",
+      "parentUuid": "4434569e_eb9537e9",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 26
+      },
+      "revId": "1f9a1c35e0ef731871209f2bb3ea5fdfac94dd34",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
