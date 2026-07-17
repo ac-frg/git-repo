@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b709a2b4_8ec82a45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-17T19:12:52Z",
+      "side": 1,
+      "message": "this is going to be bikesheddy.  but since there\u0027s cost to any change, and this proposal is already mostly bikesheddy (i.e. not fixing any code/logic bug, more of an english grammar thing), let\u0027s paint.\n\n`repo sync` performs the same operation as `git pull` (and `git clone` if it doesn\u0027t exist).  which is to say, it\u0027s `git clone` \u0026 `git fetch` \u0026 `git rebase` packed into one.\n\n`repo sync` currently uses the name `--fetch-submodules` while claiming it just fetches submodules.  in reality, it fetches \u0026 initializes.\n\n`git fetch --recurse-submodules` is basically equiv to `repo sync --network-only --fetch-submodules`.\n\n`git submodule update --init --recursive` is closer to `repo sync --fetch-submodules`, albeit git only touches the submodules and not the project itself, while repo updates both.\n\n`git clone --recurse-submodules` is basically `repo sync --fetch-submodules` when first initializing a project.\n\ni\u0027m not aware of any other standard git command with a submodule flag to it.  most importantly, there isn\u0027t a `git rebase --recurse-submodules`, it\u0027s the more clunky `git submodule update --rebase --recursive`.\n\ni guess we\u0027ll ignore the diff tools taking diff options to the flag (clone takes a path, while fetch takes an enum), and how recursive is recursive.  we\u0027ll stick to a bool option, and to the current level of recursion (since no one seems to have complained thus far).\n\nyou\u0027re proposing `repo sync --sync-submodules`.  we don\u0027t generally repeat the subcommand in the option name.  there is `--force-sync`, but that was more of us trying to split up a single coarse `--force` option.  and there\u0027s `--smart-sync` which prob could/should be just `--smart`.\n\nif we want to rename `--fetch-submodules` to clarify that it applies to every step of \"syncing\" (clone, fetch, checkout, rebase, etc...), i would be more inclined to support `--recurse-submodules` since that\u0027s the name git seems to use already.",
+      "parentUuid": "9f20f8fa_6f8df7b5",
+      "revId": "a98236d2a02b8649b3fa09b38a374ee432de7705",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d05a273e_c1eb225e",
         "filename": "subcmds/sync.py",
         "patchSetId": 1
