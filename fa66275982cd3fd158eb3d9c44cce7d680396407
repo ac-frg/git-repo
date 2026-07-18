@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e38b5c0f_8e906983",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-07-18T01:04:06Z",
+      "side": 1,
+      "message": "should clarify that this only affects the current sync operation and does not persist.  `repo init -g xxx` is sticky.",
+      "revId": "fa66275982cd3fd158eb3d9c44cce7d680396407",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
