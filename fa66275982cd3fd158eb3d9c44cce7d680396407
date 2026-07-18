@@ -52,6 +52,24 @@
       "parentUuid": "a8afd4dc_175587b6",
       "revId": "fa66275982cd3fd158eb3d9c44cce7d680396407",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2760fff0_257017fb",
+        "filename": "subcmds/sync.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1085986
+      },
+      "writtenOn": "2026-07-18T02:58:11Z",
+      "side": 1,
+      "message": "Clarified - please feel free to suggest different wording.",
+      "parentUuid": "6c37a872_67268e52",
+      "revId": "fa66275982cd3fd158eb3d9c44cce7d680396407",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
