@@ -152,6 +152,15 @@ class Command:
             self._Options(self._optparse)
         return self._optparse
 
+    @staticmethod
+    def _GetHelpForCpuJobCount(
+        job_count_help: str,
+        cpu_based_job_count_help: str,
+    ) -> str:
+        if GENERATE_MANPAGES:
+            return cpu_based_job_count_help
+        return job_count_help
+
     def _CommonOptions(self, p, opt_v=True):
         """Initialize the option parser with common options.
 
@@ -176,11 +185,10 @@ class Command:
         )
 
         if self.PARALLEL_JOBS is not None:
-            default = "based on number of CPU cores"
-            if not GENERATE_MANPAGES:
-                # Only include active cpu count if we aren't generating man
-                # pages.
-                default = f"%default; {default}"
+            default = self._GetHelpForCpuJobCount(
+                "%default; based on number of CPU cores",
+                "based on number of CPU cores",
+            )
             p.add_option(
                 "-j",
                 "--jobs",
