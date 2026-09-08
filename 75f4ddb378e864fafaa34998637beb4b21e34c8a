@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ba3e22c_f55a6a4e",
+        "filename": "command.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-08T17:30:17Z",
+      "side": 1,
+      "message": "this function is named very generically.  the args are geared towards being used anytime `GENERATE_MANPAGES` is active, but i think in practice, it\u0027s only been needed for job counts.  so i\u0027d be inclined to keep it simple for that purpose and wait for another use case to show up in the future before we generalize further.\n\nmaybe `_GetHelpForCpuJobCount` ?\n\n```\ndef _GetHelpForCpuJobCount(default_jobs: Optional[int] \u003d None):\n  prefix \u003d \"\"\n  if not GENERATE_MANPAGES:\n    if default_jobs is None:\n      prefix \u003d \"%default; \"\n    else:\n      prefix \u003d f\"{default_jobs}; \"\n  return f\"{prefix}based on number of CPU cores\"\n```",
+      "revId": "75f4ddb378e864fafaa34998637beb4b21e34c8a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
