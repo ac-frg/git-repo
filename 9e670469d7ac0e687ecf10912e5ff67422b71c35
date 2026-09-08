@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deeba2d3_53a420d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-08T16:16:42Z",
+      "side": 1,
+      "message": "the only real point of a `__main__` guard is if the file is being loaded as a module.  which doesn\u0027t happen with this file.  it\u0027s only directly executed.  so what are you actually trying to fix here ?",
+      "revId": "9e670469d7ac0e687ecf10912e5ff67422b71c35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
