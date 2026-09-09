@@ -16,6 +16,24 @@
       "message": "the only real point of a `__main__` guard is if the file is being loaded as a module.  which doesn\u0027t happen with this file.  it\u0027s only directly executed.  so what are you actually trying to fix here ?",
       "revId": "9e670469d7ac0e687ecf10912e5ff67422b71c35",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c6bd442_4fe3bbc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4006507
+      },
+      "writtenOn": "2026-09-09T14:38:41Z",
+      "side": 1,
+      "message": "Right — this file isn\u0027t imported as a normal module. \nThe issue is that multiprocessing re-executes the directly run main script during\nspawn/forkserver startup.\n\nFor a script path, CPython runs it again as `__mp_main__` via `runpy.run_path()`. Without the guard, that reaches `update_manpages.main()` again and tries to create another `Pool` while multiprocessing is still bootstrapping.\n\nThat\u0027s the failure I\u0027m fixing. I reproduced it on Linux with Python 3.14\u0027s default forkserver start method.\n\nThe test intentionally mirrors that `__mp_main__` path.\nI\u0027ll reword the commit/test text to say \"re-executes the main script\" instead of \"loads the module\".",
+      "parentUuid": "deeba2d3_53a420d1",
+      "revId": "9e670469d7ac0e687ecf10912e5ff67422b71c35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
