@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b75ee40_77054c4b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-09T18:07:41Z",
+      "side": 1,
+      "message": "`manifest_xml:` since you\u0027re only changing manifest parsing/module",
+      "revId": "1c4360bd9b581cbf6884ce401992c0e5d0fe648b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "833dbf4f_b67f5b9c",
