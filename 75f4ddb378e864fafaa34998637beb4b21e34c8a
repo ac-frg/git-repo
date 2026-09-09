@@ -34,6 +34,24 @@
       "parentUuid": "2ba3e22c_f55a6a4e",
       "revId": "75f4ddb378e864fafaa34998637beb4b21e34c8a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b71b97ae_f92e458b",
+        "filename": "command.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-09T15:26:12Z",
+      "side": 1,
+      "message": "you renamed it, but the other issues are still here",
+      "parentUuid": "f24f35eb_5817bbae",
+      "revId": "75f4ddb378e864fafaa34998637beb4b21e34c8a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
