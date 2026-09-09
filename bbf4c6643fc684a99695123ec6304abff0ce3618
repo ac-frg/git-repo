@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb204ed_3e4f01f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4006507
+      },
+      "writtenOn": "2026-09-09T19:14:23Z",
+      "side": 1,
+      "message": "Marked as resolved.",
+      "parentUuid": "3f66749e_56bc42b2",
+      "revId": "bbf4c6643fc684a99695123ec6304abff0ce3618",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "454e051c_8edb59d2",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-09-09T15:05:15Z",
       "side": 1,
       "message": "i don\u0027t think you need to mock this.  the call should never happen ... if it does, it\u0027d crash, and the test would fail.",
+      "revId": "bbf4c6643fc684a99695123ec6304abff0ce3618",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e8ae879_8193b25a",
+        "filename": "tests/test_release_update_manpages.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 4006507
+      },
+      "writtenOn": "2026-09-09T19:14:23Z",
+      "side": 1,
+      "message": "Agreed, done.",
+      "parentUuid": "454e051c_8edb59d2",
       "revId": "bbf4c6643fc684a99695123ec6304abff0ce3618",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -70,6 +106,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b58022_661239c9",
+        "filename": "tests/test_release_update_manpages.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4006507
+      },
+      "writtenOn": "2026-09-09T19:14:23Z",
+      "side": 1,
+      "message": "Marked as resolved.",
+      "parentUuid": "fb44b88d_f63b8949",
+      "revId": "bbf4c6643fc684a99695123ec6304abff0ce3618",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb80fdfa_348b1955",
@@ -83,6 +137,24 @@
       "writtenOn": "2026-09-09T15:05:15Z",
       "side": 1,
       "message": "i don\u0027t think you need to mock it.  if the test calls exit, that\u0027ll show up as a test failure.",
+      "revId": "bbf4c6643fc684a99695123ec6304abff0ce3618",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f17cf022_818dbd23",
+        "filename": "tests/test_release_update_manpages.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4006507
+      },
+      "writtenOn": "2026-09-09T19:14:23Z",
+      "side": 1,
+      "message": "Agreed, done.",
+      "parentUuid": "bb80fdfa_348b1955",
       "revId": "bbf4c6643fc684a99695123ec6304abff0ce3618",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
