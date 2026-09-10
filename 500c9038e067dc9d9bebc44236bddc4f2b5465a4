@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14aab64f_79c6d18d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-10T03:16:11Z",
+      "side": 1,
+      "message": "we don\u0027t use s-o-b",
+      "revId": "500c9038e067dc9d9bebc44236bddc4f2b5465a4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bd0fe8_03e4bcc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1007145
+      },
+      "writtenOn": "2026-09-10T03:16:11Z",
+      "side": 1,
+      "message": "can you add a unittest ?",
+      "revId": "500c9038e067dc9d9bebc44236bddc4f2b5465a4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
